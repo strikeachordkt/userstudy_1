@@ -69,3 +69,19 @@ textarea { width: 100%; min-height: 110px; font: 13px/1.4 ui-monospace, SFMono-R
   .choice .lab { font-size: .85rem; margin-top: 4px; }
   .choice[aria-pressed="true"] .lab::after { content: ""; }
 }
+
+/* ranking: badge on each card, coloured by rank */
+.choice { position: relative; }
+.rank { position: absolute; top: 8px; left: 8px; z-index: 1; border-radius: 999px; padding: 2px 10px;
+  font-size: .85rem; font-weight: 700; color: #fff; background: var(--accent); }
+.rank:empty { display: none; }
+.choice[data-rank="2"] { border-color: #7d96d9; box-shadow: none; }
+.choice[data-rank="2"] .rank { background: #7d96d9; }
+.choice[data-rank="3"] { border-color: #a9a9a6; box-shadow: none; }
+.choice[data-rank="3"] .rank { background: #8c8c88; }
+.choice[aria-pressed="true"] .lab::after { content: ""; }
+.rankbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
+.rankbar .hint { margin: 0; }
+.rankbar .btn { padding: 6px 14px; font-size: .9rem; }
+@media (max-width: 720px) { .rank { top: 4px; left: 4px; padding: 1px 6px; font-size: .7rem; } }
+.choice[data-rank="1"] { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }

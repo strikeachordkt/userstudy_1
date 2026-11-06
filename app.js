@@ -6,7 +6,7 @@
 (function () {
   "use strict";
   const STUDY = "userstudy_1_prompt_adherence";
-  const VERSION = 3;            // 3 = Part 1 resampled (seed 20261108), 2026-11-06
+  const VERSION = 4;            // 4 = rank all three, best to worst (2026-11-06)
   const STORE = "us1_state_v" + VERSION;
   const Q = window.STUDY_QUESTIONS || [];
   const BLOCKS = {
@@ -71,7 +71,7 @@
         el("p", {}, "Each page shows a short text prompt, the original letter, and three looping animations of that letter made by different methods."),
         el("ul", { class: "steps" },
           el("li", {}, "Watch all three animations for a few loops."),
-          el("li", {}, "Choose the one whose motion best performs the action described in the prompt."),
+          el("li", {}, "Rank them from best to worst by how well their motion performs the action in the prompt. Click the best one first, then the second best; the last one is ranked for you."),
           el("li", {}, "Judge the motion: does the letter move the way the prompt says? Small differences in drawing quality do not matter here.")),
         el("p", {}, "There are " + Q.length + " pages in two parts and it takes about " + Math.max(5, Math.round(Q.length / 2)) + " minutes. There are no right or wrong answers."),
         el("p", { class: "muted small" }, "Your answers stay in this browser until the end, where you download them as a small file and send it back to us. Nothing else is recorded.")),
@@ -90,24 +90,48 @@
     const ids = state.clipOrder[q.id];
     const clipById = Object.fromEntries(q.clips.map(c => [c.id, c]));
     const bust = "?v=" + shownAt;                       // restart every GIF together on each visit
-    const next = el("button", { class: "btn", disabled: ans ? null : "" }, i === state.order.length - 1 ? "Finish" : "Next");
+    const N = ids.length, ORD = ["1st", "2nd", "3rd", "4th"];
+    let rank = (ans && ans.ranking && ans.ranking.length === N) ? ans.ranking.slice() : [];   // clip ids, best -> worst
+    let resets = ans ? (ans.resets || 0) : 0;
+    const next = el("button", { class: "btn", disabled: "" }, i === state.order.length - 1 ? "Finish" : "Next");
+    const hint = el("p", { class: "muted small hint" });
+    const clear = el("button", { class: "btn secondary", type: "button" }, "Clear ranking");
+    const badges = {};
     const buttons = ids.map((cid, k) => {
       const letter = "ABC"[k];
-      const b = el("button", { class: "choice", type: "button", "aria-pressed": ans && ans.choice === cid ? "true" : "false",
-                               "aria-label": "Animation " + letter },
-        el("img", { src: clipById[cid].src + bust, alt: "Animation " + letter, loading: "eager" }),
+      badges[cid] = el("div", { class: "rank" });
+      const b = el("button", { class: "choice", type: "button", "aria-label": "Animation " + letter },
+        badges[cid], el("img", { src: clipById[cid].src + bust, alt: "Animation " + letter, loading: "eager" }),
         el("div", { class: "lab" }, "Animation " + letter));
       b.addEventListener("click", () => {
-        buttons.forEach(x => x.setAttribute("aria-pressed", "false"));
-        b.setAttribute("aria-pressed", "true");
-        const prev = state.answers[q.id];
-        state.answers[q.id] = { choice: cid, position: letter, shown: ids,
-                                seconds_to_choice: Math.round((Date.now() - shownAt) / 100) / 10,
-                                changed: prev ? (prev.changed || 0) + (prev.choice !== cid ? 1 : 0) : 0 };
-        next.removeAttribute("disabled"); save();
+        if (rank.includes(cid)) return;                    // already ranked: use Clear ranking to redo
+        rank.push(cid);
+        if (rank.length === N - 1) rank.push(ids.find(x => !rank.includes(x)));   // the last one is implied
+        paint(); commit();
       });
       return b;
     });
+    function paint() {
+      buttons.forEach((b, k) => {
+        const r = rank.indexOf(ids[k]);
+        b.setAttribute("data-rank", r < 0 ? "" : String(r + 1));
+        b.setAttribute("aria-pressed", r < 0 ? "false" : "true");
+        badges[ids[k]].textContent = r < 0 ? "" : ORD[r] + (r === 0 ? " (best)" : r === N - 1 ? " (worst)" : "");
+      });
+      hint.textContent = rank.length === 0 ? "Click the best animation first."
+                       : rank.length < N ? "Now click the second best. The last one is ranked for you."
+                       : "Ranked. Use Clear ranking to change it.";
+      if (rank.length === N) next.removeAttribute("disabled"); else next.setAttribute("disabled", "");
+      clear.disabled = rank.length === 0;
+    }
+    function commit() {
+      if (rank.length === N) state.answers[q.id] = { ranking: rank.slice(), positions: rank.map(c => "ABC"[ids.indexOf(c)]),
+                                                     shown: ids, seconds_to_rank: Math.round((Date.now() - shownAt) / 100) / 10, resets };
+      else delete state.answers[q.id];
+      save();
+    }
+    clear.addEventListener("click", () => { if (rank.length) resets++; rank = []; paint(); commit(); });
+    paint();
     next.addEventListener("click", () => { state.page = i + 1; if (state.page >= state.order.length) state.finished = new Date().toISOString(); save(); render(); });
     const back = el("button", { class: "btn secondary", onclick: () => { state.page = i - 1; save(); render(); } }, "Back");
     const pct = Math.round(100 * i / state.order.length);
@@ -118,10 +142,11 @@
         el("p", { class: "muted small blocknote" }, block.note),
         el("div", { class: "muted small" }, "Prompt"),
         el("p", { class: "prompt" }, q.prompt),
-        el("p", { class: "question" }, "Which animation best performs the action in the prompt?"),
+        el("p", { class: "question" }, "Rank the animations from best to worst: how well does each one perform the action in the prompt?"),
         el("div", { class: "row" },
           el("div", { class: "source" }, el("img", { src: q.input, alt: "The original letter" }), el("div", { class: "lab" }, "Original letter")),
-          el("div", { class: "choices" }, buttons))),
+          el("div", { class: "choices" }, buttons)),
+        el("div", { class: "rankbar" }, hint, clear)),
       el("div", { class: "nav" }, back, next));
   }
 
@@ -138,7 +163,7 @@
     const data = result();
     const text = JSON.stringify(data, null, 1);
     const fname = "us1_" + state.session + ".json";
-    const missing = data.answers.filter(a => !a.choice).length;
+    const missing = data.answers.filter(a => !a.ranking).length;
     const download = () => {
       const url = URL.createObjectURL(new Blob([text], { type: "application/json" }));
       const a = el("a", { href: url, download: fname }); document.body.append(a); a.click(); a.remove();
@@ -170,7 +195,7 @@
   const pv = new URLSearchParams(location.search).get("preview");
   if (pv !== null) {
     state = fresh(); save = function () {};
-    if (pv === "done") { state.order.forEach(id => { state.answers[id] = { choice: state.clipOrder[id][0], position: "A" }; }); state.page = state.order.length; }
+    if (pv === "done") { state.order.forEach(id => { state.answers[id] = { ranking: state.clipOrder[id].slice(), positions: ["A", "B", "C"] }; }); state.page = state.order.length; }
     else state.page = Math.max(-1, Math.min(Q.length - 1, parseInt(pv, 10) || 0));
   }
   // preload every clip once so pages show instantly
