@@ -6,8 +6,9 @@
 (function () {
   "use strict";
   const STUDY = "userstudy_1_prompt_adherence";
-  const VERSION = 15;           // 15 = fencer replaced, section 2 question with bold phrase (2026-11-06)
+  const VERSION = 16;         // 16 = answers saved to git through the Worker (2026-11-06)
   const STORE = "us1_state_v" + VERSION;
+  const SUBMIT_URL = "";         // Cloudflare Worker that commits answers to git (userstudies/submit_worker); empty = download only
   const Q = window.STUDY_QUESTIONS || [];
   // *word* is shown in bold
   const BLOCKS = {
@@ -203,19 +204,37 @@
       try { await navigator.clipboard.writeText(text); copyBtn.textContent = "Copied"; }
       catch (e) { ta.select(); document.execCommand("copy"); copyBtn.textContent = "Copied"; }
     });
+    const status = el("p", { class: "status" });
+    const retry = el("button", { class: "btn", type: "button", style: "display:none" }, "Try again");
+    const backup = [
+      el("div", { class: "actions" }, el("button", { class: "btn secondary", onclick: download }, "Download answers (" + fname + ")"), copyBtn),
+      el("p", { class: "muted small", style: "margin-top:14px" }, "If the download does not work on your device, copy the text below and send it instead."),
+      ta];
+    const sig = JSON.stringify(data.answers);
+    const isPreview = new URLSearchParams(location.search).has("preview");
+    function send() {                                   // store the answers in git through the Worker
+      if (!SUBMIT_URL || isPreview) { status.textContent = "Please download your answers and send the file back to us."; return; }
+      if (state.submittedSig === sig) { status.textContent = "Your answers have been saved. Thank you, you can close this page."; return; }
+      status.textContent = "Saving your answers..."; retry.style.display = "none";
+      fetch(SUBMIT_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: text })
+        .then(r => r.json().then(j => { if (!(r.ok && j.ok)) throw new Error(j.error || String(r.status)); }))
+        .then(() => { state.submittedSig = sig; save(); status.textContent = "Your answers have been saved. Thank you, you can close this page."; })
+        .catch(() => { status.textContent = "We could not save your answers automatically. Please try again, or download them below and send the file to us."; retry.style.display = ""; });
+    }
+    retry.addEventListener("click", send);
     app.append(
       el("h1", {}, "Thank you!"),
       el("div", { class: "panel" },
-        missing ? el("p", {}, "You skipped " + missing + " page(s). You can go back and answer them, or send the file as it is.") : null,
-        el("p", {}, "Please download your answers and send the file back to us. That is the only way we receive them."),
-        el("div", { class: "actions" }, el("button", { class: "btn", onclick: download }, "Download answers (" + fname + ")"), copyBtn),
-        el("p", { class: "muted small", style: "margin-top:14px" }, "If the download does not work on your device, copy the text below and send it instead."),
-        ta),
+        missing ? el("p", {}, "You skipped " + missing + " page(s). You can go back and answer them first.") : null,
+        status, retry,
+        SUBMIT_URL ? el("details", { class: "backup" }, el("summary", { class: "muted small" }, "Keep a copy of your answers"), ...backup)
+                   : el("div", {}, ...backup)),
       el("div", { class: "nav" },
         el("button", { class: "btn secondary", onclick: () => { state.page = state.order.length - 1; save(); render(); } }, "Back"),
         el("button", { class: "btn secondary", onclick: () => {
           if (confirm("Start over? Your current answers in this browser will be cleared.")) { state = fresh(); save(); render(); }
         } }, "Start over")));
+    send();
   }
 
   // ?preview=N shows page N (0-based; "done" for the last screen) for checking the layout. It uses a
