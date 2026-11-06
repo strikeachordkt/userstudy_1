@@ -6,7 +6,7 @@
 (function () {
   "use strict";
   const STUDY = "userstudy_1_prompt_adherence";
-  const VERSION = 12;           // 12 = section 1 question reworded, with bold key phrases (2026-11-06)
+  const VERSION = 13;           // 13 = "less than 5 minutes" only (2026-11-06)
   const STORE = "us1_state_v" + VERSION;
   const Q = window.STUDY_QUESTIONS || [];
   // *word* is shown in bold
@@ -90,7 +90,7 @@
           el("li", {}, "Watch all three animations for a few loops."),
           el("li", {}, "Rank them from best to worst by how well their motion performs the action in the prompt. Click the best one first, then the second best; the last one is ranked for you."),
           el("li", {}, "Judge the motion based on how well it follows the prompt while keeping good motion quality.")),
-        el("p", {}, "Each section starts with a short note on what to look for. In total it takes about " + Math.max(5, Math.round(Q.length / 2)) + " minutes.")),
+        el("p", {}, "Each section starts with a short note on what to look for.")),
       el("div", { class: "nav" }, el("span"),
         el("button", { class: "btn", onclick: () => {
           state.started = state.started || new Date().toISOString();
