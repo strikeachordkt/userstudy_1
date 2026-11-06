@@ -6,7 +6,7 @@
 (function () {
   "use strict";
   const STUDY = "userstudy_1_prompt_adherence";
-  const VERSION = 8;            // 8 = starfish prompt reworded (2026-11-06)
+  const VERSION = 9;            // 9 = 15 + 15 from the project site only (2026-11-06)
   const STORE = "us1_state_v" + VERSION;
   const Q = window.STUDY_QUESTIONS || [];
   const BLOCKS = {
