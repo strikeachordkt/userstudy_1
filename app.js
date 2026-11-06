@@ -1,14 +1,14 @@
 /* User study 1: which animation best follows the prompt?
  * Static, no server. Each participant gets their own random order of the questions (within each
- * part) and of the three animations (A, B, C) on every question. At the end the answers are saved
- * as a JSON file the participant downloads and sends back; collected files go in responses/.
+ * part) and of the three animations (A, B, C) on every question. At the end the answers are sent
+ * to a Google Sheet (SUBMIT_URL, see userstudies/sheet_collector); a JSON download stays as a backup.
  * Progress is kept in this browser (localStorage) so a reload does not lose answers. */
 (function () {
   "use strict";
   const STUDY = "userstudy_1_prompt_adherence";
   const VERSION = 17;         // 17 = final selection: Section 1 paper cases + Section 2 no-shape cases (2026-11-06)
   const STORE = "us1_state_v" + VERSION;
-  const SUBMIT_URL = "";         // Cloudflare Worker that commits answers to git (userstudies/submit_worker); empty = download only
+  const SUBMIT_URL = "https://script.google.com/macros/s/AKfycbzAROXydxaAtQYXPOmOT-Eaym6FIzo-LJIo8dxoVcNalQQ2iUsAj95FqXgCMrapHKV61g/exec";         // Google Apps Script web app that adds answers to a Google Sheet (userstudies/sheet_collector); empty = download only
   const Q = window.STUDY_QUESTIONS || [];
   // *word* is shown in bold
   const BLOCKS = {
@@ -212,11 +212,11 @@
       ta];
     const sig = JSON.stringify(data.answers);
     const isPreview = new URLSearchParams(location.search).has("preview");
-    function send() {                                   // store the answers in git through the Worker
+    function send() {                                   // add the answers to the Google Sheet
       if (!SUBMIT_URL || isPreview) { status.textContent = "Please download your answers and send the file back to us."; return; }
       if (state.submittedSig === sig) { status.textContent = "Your answers have been saved. Thank you, you can close this page."; return; }
       status.textContent = "Saving your answers..."; retry.style.display = "none";
-      fetch(SUBMIT_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: text })
+      fetch(SUBMIT_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: text })   // plain text: no CORS preflight, which Apps Script cannot answer
         .then(r => r.json().then(j => { if (!(r.ok && j.ok)) throw new Error(j.error || String(r.status)); }))
         .then(() => { state.submittedSig = sig; save(); status.textContent = "Your answers have been saved. Thank you, you can close this page."; })
         .catch(() => { status.textContent = "We could not save your answers automatically. Please try again, or download them below and send the file to us."; retry.style.display = ""; });
