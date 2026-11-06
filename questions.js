@@ -3,7 +3,7 @@ window.STUDY_QUESTIONS = [
  {
   "id": "q01",
   "block": "shape_motion",
-  "prompt": "A bird in flight beating both wings through deep full strokes, up and down",
+  "prompt": "A figure raising both arms high overhead and lowering them to the sides",
   "input": "assets/q01/input.png",
   "clips": [
    {
@@ -23,7 +23,7 @@ window.STUDY_QUESTIONS = [
  {
   "id": "q02",
   "block": "shape_motion",
-  "prompt": "A figure raising both arms high overhead and lowering them to the sides",
+  "prompt": "A rooster strutting, its head bobbing forward and back with each step",
   "input": "assets/q02/input.png",
   "clips": [
    {
@@ -43,7 +43,7 @@ window.STUDY_QUESTIONS = [
  {
   "id": "q03",
   "block": "shape_motion",
-  "prompt": "A rooster strutting, its head bobbing forward and back with each step",
+  "prompt": "A seated cat flicking its long tail back and forth",
   "input": "assets/q03/input.png",
   "clips": [
    {
@@ -83,7 +83,7 @@ window.STUDY_QUESTIONS = [
  {
   "id": "q05",
   "block": "shape_motion",
-  "prompt": "An armoured knight swinging his long sword up overhead and down again",
+  "prompt": "A man doing exercise by lifting two dumbbells in both hands",
   "input": "assets/q05/input.png",
   "clips": [
    {
@@ -102,8 +102,8 @@ window.STUDY_QUESTIONS = [
  },
  {
   "id": "q06",
-  "block": "motion_only",
-  "prompt": "A man cheering with raised arms",
+  "block": "shape_motion",
+  "prompt": "A boot kicking a ball, standing leg firm",
   "input": "assets/q06/input.png",
   "clips": [
    {
@@ -122,8 +122,8 @@ window.STUDY_QUESTIONS = [
  },
  {
   "id": "q07",
-  "block": "motion_only",
-  "prompt": "A student raising one arm to ask a question",
+  "block": "shape_motion",
+  "prompt": "A bat in flight flapping its two broad wings up and down",
   "input": "assets/q07/input.png",
   "clips": [
    {
@@ -142,8 +142,8 @@ window.STUDY_QUESTIONS = [
  },
  {
   "id": "q08",
-  "block": "motion_only",
-  "prompt": "A boxer throwing a punch",
+  "block": "shape_motion",
+  "prompt": "A camel walks steadily across the desert",
   "input": "assets/q08/input.png",
   "clips": [
    {
@@ -162,8 +162,8 @@ window.STUDY_QUESTIONS = [
  },
  {
   "id": "q09",
-  "block": "motion_only",
-  "prompt": "A snake slithering",
+  "block": "shape_motion",
+  "prompt": "A man doing Dumbbell Lateral Raise",
   "input": "assets/q09/input.png",
   "clips": [
    {
@@ -182,8 +182,8 @@ window.STUDY_QUESTIONS = [
  },
  {
   "id": "q10",
-  "block": "motion_only",
-  "prompt": "A sad clown drooping, head lowering",
+  "block": "shape_motion",
+  "prompt": "A runner jogging on the spot, one knee lifting high and dropping back down",
   "input": "assets/q10/input.png",
   "clips": [
    {
@@ -197,6 +197,206 @@ window.STUDY_QUESTIONS = [
    {
     "id": "69df4fa3",
     "src": "assets/q10/69df4fa3.gif"
+   }
+  ]
+ },
+ {
+  "id": "q11",
+  "block": "motion_only",
+  "prompt": "A lamp nodding its head",
+  "input": "assets/q11/input.png",
+  "clips": [
+   {
+    "id": "da6affd2",
+    "src": "assets/q11/da6affd2.gif"
+   },
+   {
+    "id": "32c7b398",
+    "src": "assets/q11/32c7b398.gif"
+   },
+   {
+    "id": "1f27127a",
+    "src": "assets/q11/1f27127a.gif"
+   }
+  ]
+ },
+ {
+  "id": "q12",
+  "block": "motion_only",
+  "prompt": "A scarecrow's arms bouncing in wind",
+  "input": "assets/q12/input.png",
+  "clips": [
+   {
+    "id": "cd1b58b2",
+    "src": "assets/q12/cd1b58b2.gif"
+   },
+   {
+    "id": "0ea9cbf8",
+    "src": "assets/q12/0ea9cbf8.gif"
+   },
+   {
+    "id": "f2fc9337",
+    "src": "assets/q12/f2fc9337.gif"
+   }
+  ]
+ },
+ {
+  "id": "q13",
+  "block": "motion_only",
+  "prompt": "A man cheering with raised arms",
+  "input": "assets/q13/input.png",
+  "clips": [
+   {
+    "id": "d43c6270",
+    "src": "assets/q13/d43c6270.gif"
+   },
+   {
+    "id": "89a5e3ed",
+    "src": "assets/q13/89a5e3ed.gif"
+   },
+   {
+    "id": "5fa37153",
+    "src": "assets/q13/5fa37153.gif"
+   }
+  ]
+ },
+ {
+  "id": "q14",
+  "block": "motion_only",
+  "prompt": "A soldier marching in place, stiff and rhythmic",
+  "input": "assets/q14/input.png",
+  "clips": [
+   {
+    "id": "2a89f01e",
+    "src": "assets/q14/2a89f01e.gif"
+   },
+   {
+    "id": "8abecf7f",
+    "src": "assets/q14/8abecf7f.gif"
+   },
+   {
+    "id": "66c02fc4",
+    "src": "assets/q14/66c02fc4.gif"
+   }
+  ]
+ },
+ {
+  "id": "q15",
+  "block": "motion_only",
+  "prompt": "A happy dog wagging its tail",
+  "input": "assets/q15/input.png",
+  "clips": [
+   {
+    "id": "06fa9ca2",
+    "src": "assets/q15/06fa9ca2.gif"
+   },
+   {
+    "id": "9346e1e4",
+    "src": "assets/q15/9346e1e4.gif"
+   },
+   {
+    "id": "0e86575f",
+    "src": "assets/q15/0e86575f.gif"
+   }
+  ]
+ },
+ {
+  "id": "q16",
+  "block": "motion_only",
+  "prompt": "A student raising one arm to ask a question",
+  "input": "assets/q16/input.png",
+  "clips": [
+   {
+    "id": "4212d44f",
+    "src": "assets/q16/4212d44f.gif"
+   },
+   {
+    "id": "d159b500",
+    "src": "assets/q16/d159b500.gif"
+   },
+   {
+    "id": "512a723c",
+    "src": "assets/q16/512a723c.gif"
+   }
+  ]
+ },
+ {
+  "id": "q17",
+  "block": "motion_only",
+  "prompt": "A boxer throwing a punch",
+  "input": "assets/q17/input.png",
+  "clips": [
+   {
+    "id": "2cdd5b52",
+    "src": "assets/q17/2cdd5b52.gif"
+   },
+   {
+    "id": "2e7da7fb",
+    "src": "assets/q17/2e7da7fb.gif"
+   },
+   {
+    "id": "3959393a",
+    "src": "assets/q17/3959393a.gif"
+   }
+  ]
+ },
+ {
+  "id": "q18",
+  "block": "motion_only",
+  "prompt": "Tweezers opening and closing",
+  "input": "assets/q18/input.png",
+  "clips": [
+   {
+    "id": "5510992e",
+    "src": "assets/q18/5510992e.gif"
+   },
+   {
+    "id": "a43a9783",
+    "src": "assets/q18/a43a9783.gif"
+   },
+   {
+    "id": "eb891470",
+    "src": "assets/q18/eb891470.gif"
+   }
+  ]
+ },
+ {
+  "id": "q19",
+  "block": "motion_only",
+  "prompt": "A snake slithering",
+  "input": "assets/q19/input.png",
+  "clips": [
+   {
+    "id": "33bb585c",
+    "src": "assets/q19/33bb585c.gif"
+   },
+   {
+    "id": "00efdd40",
+    "src": "assets/q19/00efdd40.gif"
+   },
+   {
+    "id": "aa694ed5",
+    "src": "assets/q19/aa694ed5.gif"
+   }
+  ]
+ },
+ {
+  "id": "q20",
+  "block": "motion_only",
+  "prompt": "A sad clown drooping, head lowering",
+  "input": "assets/q20/input.png",
+  "clips": [
+   {
+    "id": "d948e21e",
+    "src": "assets/q20/d948e21e.gif"
+   },
+   {
+    "id": "f5a83d07",
+    "src": "assets/q20/f5a83d07.gif"
+   },
+   {
+    "id": "0e3af1fb",
+    "src": "assets/q20/0e3af1fb.gif"
    }
   ]
  }

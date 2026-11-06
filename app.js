@@ -6,7 +6,7 @@
 (function () {
   "use strict";
   const STUDY = "userstudy_1_prompt_adherence";
-  const VERSION = 1;
+  const VERSION = 2;            // 2 = 20 pages (10 + 10), reselected 2026-11-06
   const STORE = "us1_state_v" + VERSION;
   const Q = window.STUDY_QUESTIONS || [];
   const BLOCKS = {
@@ -73,7 +73,7 @@
           el("li", {}, "Watch all three animations for a few loops."),
           el("li", {}, "Choose the one whose motion best performs the action described in the prompt."),
           el("li", {}, "Judge the motion: does the letter move the way the prompt says? Small differences in drawing quality do not matter here.")),
-        el("p", {}, "There are " + Q.length + " pages in two short parts and it takes about 5 minutes. There are no right or wrong answers."),
+        el("p", {}, "There are " + Q.length + " pages in two parts and it takes about " + Math.max(5, Math.round(Q.length / 2)) + " minutes. There are no right or wrong answers."),
         el("p", { class: "muted small" }, "Your answers stay in this browser until the end, where you download them as a small file and send it back to us. Nothing else is recorded.")),
       el("div", { class: "nav" }, el("span"),
         el("button", { class: "btn", onclick: () => {
