@@ -3,260 +3,260 @@ window.STUDY_QUESTIONS = [
  {
   "id": "q01",
   "block": "shape_motion",
-  "prompt": "A bird in flight beating both wings through deep full strokes, up and down",
-  "input": "assets/q01/in_ab525846.png",
+  "prompt": "An empty playground swing swinging back and forth between its chains",
+  "input": "assets/q01/in_e2b3aa72.png",
   "clips": [
    {
-    "id": "3232cb89",
-    "src": "assets/q01/3232cb89.gif"
+    "id": "9d1d9a95",
+    "src": "assets/q01/9d1d9a95.gif"
    },
    {
-    "id": "160fbcad",
-    "src": "assets/q01/160fbcad.gif"
+    "id": "10c6a764",
+    "src": "assets/q01/10c6a764.gif"
    },
    {
-    "id": "bcc78e7c",
-    "src": "assets/q01/bcc78e7c.gif"
+    "id": "0c4e7c98",
+    "src": "assets/q01/0c4e7c98.gif"
    }
   ]
  },
  {
   "id": "q02",
   "block": "shape_motion",
-  "prompt": "A figure raising both arms high overhead and lowering them to the sides",
-  "input": "assets/q02/in_ce237d2b.png",
+  "prompt": "A bird in flight beating both wings through deep full strokes, up and down",
+  "input": "assets/q02/in_e8d2439c.png",
   "clips": [
    {
-    "id": "cf94f6af",
-    "src": "assets/q02/cf94f6af.gif"
+    "id": "a5c7eb8e",
+    "src": "assets/q02/a5c7eb8e.gif"
    },
    {
-    "id": "c09b550d",
-    "src": "assets/q02/c09b550d.gif"
+    "id": "27e58116",
+    "src": "assets/q02/27e58116.gif"
    },
    {
-    "id": "d5a4e53d",
-    "src": "assets/q02/d5a4e53d.gif"
+    "id": "deef0dac",
+    "src": "assets/q02/deef0dac.gif"
    }
   ]
  },
  {
   "id": "q03",
   "block": "shape_motion",
-  "prompt": "A rooster strutting, its head bobbing forward and back with each step",
-  "input": "assets/q03/in_49326c99.png",
+  "prompt": "A figure raising both arms high overhead and lowering them to the sides",
+  "input": "assets/q03/in_1919dfc2.png",
   "clips": [
    {
-    "id": "0f3c2d5b",
-    "src": "assets/q03/0f3c2d5b.gif"
+    "id": "88addf4d",
+    "src": "assets/q03/88addf4d.gif"
    },
    {
-    "id": "1a459da2",
-    "src": "assets/q03/1a459da2.gif"
+    "id": "cd74d540",
+    "src": "assets/q03/cd74d540.gif"
    },
    {
-    "id": "276894f8",
-    "src": "assets/q03/276894f8.gif"
+    "id": "8e2cb770",
+    "src": "assets/q03/8e2cb770.gif"
    }
   ]
  },
  {
   "id": "q04",
   "block": "shape_motion",
-  "prompt": "A seated cat flicking its long tail back and forth",
-  "input": "assets/q04/in_cc71eecb.png",
+  "prompt": "A rooster strutting, its head bobbing forward and back with each step",
+  "input": "assets/q04/in_72da1a00.png",
   "clips": [
    {
-    "id": "12ca02e1",
-    "src": "assets/q04/12ca02e1.gif"
+    "id": "701244a1",
+    "src": "assets/q04/701244a1.gif"
    },
    {
-    "id": "19e8e2de",
-    "src": "assets/q04/19e8e2de.gif"
+    "id": "4ff57138",
+    "src": "assets/q04/4ff57138.gif"
    },
    {
-    "id": "99907d4e",
-    "src": "assets/q04/99907d4e.gif"
+    "id": "1b4c1f52",
+    "src": "assets/q04/1b4c1f52.gif"
    }
   ]
  },
  {
   "id": "q05",
   "block": "shape_motion",
-  "prompt": "A heavy boot tapping its toe up and down against the ground",
-  "input": "assets/q05/in_f7992663.png",
+  "prompt": "A seated cat flicking its long tail back and forth",
+  "input": "assets/q05/in_301e25d6.png",
   "clips": [
    {
-    "id": "7f05266f",
-    "src": "assets/q05/7f05266f.gif"
+    "id": "ab63e77d",
+    "src": "assets/q05/ab63e77d.gif"
    },
    {
-    "id": "cff527f2",
-    "src": "assets/q05/cff527f2.gif"
+    "id": "a0f70735",
+    "src": "assets/q05/a0f70735.gif"
    },
    {
-    "id": "1cbd470c",
-    "src": "assets/q05/1cbd470c.gif"
+    "id": "2ae3c34f",
+    "src": "assets/q05/2ae3c34f.gif"
    }
   ]
  },
  {
   "id": "q06",
   "block": "shape_motion",
-  "prompt": "A figure doing jumping jacks, throwing all four limbs wide and snapping them together",
-  "input": "assets/q06/in_a2b609bc.png",
+  "prompt": "A heavy boot tapping its toe up and down against the ground",
+  "input": "assets/q06/in_c010b58f.png",
   "clips": [
    {
-    "id": "f670b6b8",
-    "src": "assets/q06/f670b6b8.gif"
+    "id": "f92f2d4b",
+    "src": "assets/q06/f92f2d4b.gif"
    },
    {
-    "id": "293523e8",
-    "src": "assets/q06/293523e8.gif"
+    "id": "c251eedf",
+    "src": "assets/q06/c251eedf.gif"
    },
    {
-    "id": "b37530aa",
-    "src": "assets/q06/b37530aa.gif"
+    "id": "7331f241",
+    "src": "assets/q06/7331f241.gif"
    }
   ]
  },
  {
   "id": "q07",
   "block": "shape_motion",
-  "prompt": "A tall stepladder rocking side to side on uneven ground",
-  "input": "assets/q07/in_5d85362a.png",
+  "prompt": "A figure doing jumping jacks, throwing all four limbs wide and snapping them together",
+  "input": "assets/q07/in_e62195e5.png",
   "clips": [
    {
-    "id": "226b388c",
-    "src": "assets/q07/226b388c.gif"
+    "id": "ee95ae61",
+    "src": "assets/q07/ee95ae61.gif"
    },
    {
-    "id": "a2efae9f",
-    "src": "assets/q07/a2efae9f.gif"
+    "id": "3b2db7a5",
+    "src": "assets/q07/3b2db7a5.gif"
    },
    {
-    "id": "ad8eb0d3",
-    "src": "assets/q07/ad8eb0d3.gif"
+    "id": "ac8804f5",
+    "src": "assets/q07/ac8804f5.gif"
    }
   ]
  },
  {
   "id": "q08",
   "block": "shape_motion",
-  "prompt": "A moth fluttering, its broad wings beating up and down",
-  "input": "assets/q08/in_6980fba6.png",
+  "prompt": "A tall stepladder rocking side to side on uneven ground",
+  "input": "assets/q08/in_e2857bd1.png",
   "clips": [
    {
-    "id": "0393b702",
-    "src": "assets/q08/0393b702.gif"
+    "id": "170b6e70",
+    "src": "assets/q08/170b6e70.gif"
    },
    {
-    "id": "328ba33a",
-    "src": "assets/q08/328ba33a.gif"
+    "id": "9e6254b7",
+    "src": "assets/q08/9e6254b7.gif"
    },
    {
-    "id": "aaacae5a",
-    "src": "assets/q08/aaacae5a.gif"
+    "id": "1a5df9a1",
+    "src": "assets/q08/1a5df9a1.gif"
    }
   ]
  },
  {
   "id": "q09",
   "block": "shape_motion",
-  "prompt": "A lizard doing push-ups, tail flat",
-  "input": "assets/q09/in_13c09ab4.png",
+  "prompt": "A moth fluttering, its broad wings beating up and down",
+  "input": "assets/q09/in_a467ace6.png",
   "clips": [
    {
-    "id": "768676eb",
-    "src": "assets/q09/768676eb.gif"
+    "id": "e01e9115",
+    "src": "assets/q09/e01e9115.gif"
    },
    {
-    "id": "59ffa0ee",
-    "src": "assets/q09/59ffa0ee.gif"
+    "id": "150249eb",
+    "src": "assets/q09/150249eb.gif"
    },
    {
-    "id": "142fee9f",
-    "src": "assets/q09/142fee9f.gif"
+    "id": "0f530754",
+    "src": "assets/q09/0f530754.gif"
    }
   ]
  },
  {
   "id": "q10",
   "block": "shape_motion",
-  "prompt": "A man doing exercise by lifting two dumbbells in both hands",
-  "input": "assets/q10/in_c4e030e3.png",
+  "prompt": "A lizard doing push-ups, tail flat",
+  "input": "assets/q10/in_581dcc6a.png",
   "clips": [
    {
-    "id": "cea02d1c",
-    "src": "assets/q10/cea02d1c.gif"
+    "id": "89b32e69",
+    "src": "assets/q10/89b32e69.gif"
    },
    {
-    "id": "659d0a55",
-    "src": "assets/q10/659d0a55.gif"
+    "id": "a5bb0c2a",
+    "src": "assets/q10/a5bb0c2a.gif"
    },
    {
-    "id": "f3fe2b0c",
-    "src": "assets/q10/f3fe2b0c.gif"
+    "id": "feef42e5",
+    "src": "assets/q10/feef42e5.gif"
    }
   ]
  },
  {
   "id": "q11",
   "block": "shape_motion",
-  "prompt": "A dog offering its paw, body seated",
-  "input": "assets/q11/in_191fd760.png",
+  "prompt": "A man doing exercise by lifting two dumbbells in both hands",
+  "input": "assets/q11/in_cf4f08c7.png",
   "clips": [
    {
-    "id": "61d51c8f",
-    "src": "assets/q11/61d51c8f.gif"
+    "id": "105eb0af",
+    "src": "assets/q11/105eb0af.gif"
    },
    {
-    "id": "33b7c217",
-    "src": "assets/q11/33b7c217.gif"
+    "id": "bdbe8b2d",
+    "src": "assets/q11/bdbe8b2d.gif"
    },
    {
-    "id": "74795d65",
-    "src": "assets/q11/74795d65.gif"
+    "id": "2591a6c5",
+    "src": "assets/q11/2591a6c5.gif"
    }
   ]
  },
  {
   "id": "q12",
   "block": "shape_motion",
-  "prompt": "A pair of steel scissors opening wide and snapping shut",
-  "input": "assets/q12/in_35014522.png",
+  "prompt": "A dog offering its paw, body seated",
+  "input": "assets/q12/in_440760e0.png",
   "clips": [
    {
-    "id": "655c3297",
-    "src": "assets/q12/655c3297.gif"
+    "id": "92226e12",
+    "src": "assets/q12/92226e12.gif"
    },
    {
-    "id": "aca3c6bb",
-    "src": "assets/q12/aca3c6bb.gif"
+    "id": "885ce8a0",
+    "src": "assets/q12/885ce8a0.gif"
    },
    {
-    "id": "97b4a6f9",
-    "src": "assets/q12/97b4a6f9.gif"
+    "id": "78f38cc1",
+    "src": "assets/q12/78f38cc1.gif"
    }
   ]
  },
  {
   "id": "q13",
   "block": "shape_motion",
-  "prompt": "A fencer lunging: back leg extended, arm thrust, torso stable",
-  "input": "assets/q13/in_d31074b6.png",
+  "prompt": "A pair of steel scissors opening wide and snapping shut",
+  "input": "assets/q13/in_2ec62631.png",
   "clips": [
    {
-    "id": "6f43344c",
-    "src": "assets/q13/6f43344c.gif"
+    "id": "1c3bee48",
+    "src": "assets/q13/1c3bee48.gif"
    },
    {
-    "id": "e3c7ad63",
-    "src": "assets/q13/e3c7ad63.gif"
+    "id": "a338d3d8",
+    "src": "assets/q13/a338d3d8.gif"
    },
    {
-    "id": "4349e607",
-    "src": "assets/q13/4349e607.gif"
+    "id": "1e152ee2",
+    "src": "assets/q13/1e152ee2.gif"
    }
   ]
  },
@@ -264,19 +264,19 @@ window.STUDY_QUESTIONS = [
   "id": "q14",
   "block": "shape_motion",
   "prompt": "A runner jogging on the spot, one knee lifting high and dropping back down",
-  "input": "assets/q14/in_2fc723bc.png",
+  "input": "assets/q14/in_df85aee6.png",
   "clips": [
    {
-    "id": "27ff57f9",
-    "src": "assets/q14/27ff57f9.gif"
+    "id": "6ac672ae",
+    "src": "assets/q14/6ac672ae.gif"
    },
    {
-    "id": "3e95e7d2",
-    "src": "assets/q14/3e95e7d2.gif"
+    "id": "fae144cc",
+    "src": "assets/q14/fae144cc.gif"
    },
    {
-    "id": "9a6109ab",
-    "src": "assets/q14/9a6109ab.gif"
+    "id": "d89c1af8",
+    "src": "assets/q14/d89c1af8.gif"
    }
   ]
  },
@@ -284,19 +284,19 @@ window.STUDY_QUESTIONS = [
   "id": "q15",
   "block": "shape_motion",
   "prompt": "A toaster: body still, two slices popping at different times",
-  "input": "assets/q15/in_52e0fc8c.png",
+  "input": "assets/q15/in_91b7a5aa.png",
   "clips": [
    {
-    "id": "1b829ed3",
-    "src": "assets/q15/1b829ed3.gif"
+    "id": "190b4b68",
+    "src": "assets/q15/190b4b68.gif"
    },
    {
-    "id": "3d0be8e1",
-    "src": "assets/q15/3d0be8e1.gif"
+    "id": "3f48def1",
+    "src": "assets/q15/3f48def1.gif"
    },
    {
-    "id": "4de89b2c",
-    "src": "assets/q15/4de89b2c.gif"
+    "id": "386b7f93",
+    "src": "assets/q15/386b7f93.gif"
    }
   ]
  },
@@ -304,19 +304,19 @@ window.STUDY_QUESTIONS = [
   "id": "q16",
   "block": "motion_only",
   "prompt": "A ladder wobbling",
-  "input": "assets/q16/in_ddab1463.png",
+  "input": "assets/q16/in_1d389419.png",
   "clips": [
    {
-    "id": "b4a4089f",
-    "src": "assets/q16/b4a4089f.gif"
+    "id": "d78872e7",
+    "src": "assets/q16/d78872e7.gif"
    },
    {
-    "id": "11c87d7f",
-    "src": "assets/q16/11c87d7f.gif"
+    "id": "3359314f",
+    "src": "assets/q16/3359314f.gif"
    },
    {
-    "id": "087d47fa",
-    "src": "assets/q16/087d47fa.gif"
+    "id": "bfd27a26",
+    "src": "assets/q16/bfd27a26.gif"
    }
   ]
  },
@@ -324,19 +324,19 @@ window.STUDY_QUESTIONS = [
   "id": "q17",
   "block": "motion_only",
   "prompt": "A lamp nodding its head",
-  "input": "assets/q17/in_b605e576.png",
+  "input": "assets/q17/in_e0e51754.png",
   "clips": [
    {
-    "id": "3f94f982",
-    "src": "assets/q17/3f94f982.gif"
+    "id": "a6edf5f7",
+    "src": "assets/q17/a6edf5f7.gif"
    },
    {
-    "id": "5caf0a42",
-    "src": "assets/q17/5caf0a42.gif"
+    "id": "3cfa6a80",
+    "src": "assets/q17/3cfa6a80.gif"
    },
    {
-    "id": "ca971ef6",
-    "src": "assets/q17/ca971ef6.gif"
+    "id": "3ca02d53",
+    "src": "assets/q17/3ca02d53.gif"
    }
   ]
  },
@@ -344,19 +344,19 @@ window.STUDY_QUESTIONS = [
   "id": "q18",
   "block": "motion_only",
   "prompt": "A scarecrow's arms bouncing in wind",
-  "input": "assets/q18/in_0ca69784.png",
+  "input": "assets/q18/in_2b7f52d0.png",
   "clips": [
    {
-    "id": "4fa4b50b",
-    "src": "assets/q18/4fa4b50b.gif"
+    "id": "69c19790",
+    "src": "assets/q18/69c19790.gif"
    },
    {
-    "id": "a01c9803",
-    "src": "assets/q18/a01c9803.gif"
+    "id": "0eca664e",
+    "src": "assets/q18/0eca664e.gif"
    },
    {
-    "id": "8bc3910a",
-    "src": "assets/q18/8bc3910a.gif"
+    "id": "2d0e1ea6",
+    "src": "assets/q18/2d0e1ea6.gif"
    }
   ]
  },
@@ -364,19 +364,19 @@ window.STUDY_QUESTIONS = [
   "id": "q19",
   "block": "motion_only",
   "prompt": "A man cheering with raised arms",
-  "input": "assets/q19/in_ee71d606.png",
+  "input": "assets/q19/in_26a1d6df.png",
   "clips": [
    {
-    "id": "1c45e0d0",
-    "src": "assets/q19/1c45e0d0.gif"
+    "id": "a65bddf9",
+    "src": "assets/q19/a65bddf9.gif"
    },
    {
-    "id": "78cd181d",
-    "src": "assets/q19/78cd181d.gif"
+    "id": "12594f8c",
+    "src": "assets/q19/12594f8c.gif"
    },
    {
-    "id": "0480dec2",
-    "src": "assets/q19/0480dec2.gif"
+    "id": "e370fec1",
+    "src": "assets/q19/e370fec1.gif"
    }
   ]
  },
@@ -384,19 +384,19 @@ window.STUDY_QUESTIONS = [
   "id": "q20",
   "block": "motion_only",
   "prompt": "A soldier marching in place, stiff and rhythmic",
-  "input": "assets/q20/in_95eb4392.png",
+  "input": "assets/q20/in_ffb7eaac.png",
   "clips": [
    {
-    "id": "0bdb302c",
-    "src": "assets/q20/0bdb302c.gif"
+    "id": "190896e6",
+    "src": "assets/q20/190896e6.gif"
    },
    {
-    "id": "274ebe6d",
-    "src": "assets/q20/274ebe6d.gif"
+    "id": "51b90dac",
+    "src": "assets/q20/51b90dac.gif"
    },
    {
-    "id": "7359b2a6",
-    "src": "assets/q20/7359b2a6.gif"
+    "id": "78712c98",
+    "src": "assets/q20/78712c98.gif"
    }
   ]
  },
@@ -404,19 +404,19 @@ window.STUDY_QUESTIONS = [
   "id": "q21",
   "block": "motion_only",
   "prompt": "A happy dog wagging its tail",
-  "input": "assets/q21/in_93d6abd1.png",
+  "input": "assets/q21/in_8ebc53f2.png",
   "clips": [
    {
-    "id": "71bca7b6",
-    "src": "assets/q21/71bca7b6.gif"
+    "id": "288b83fe",
+    "src": "assets/q21/288b83fe.gif"
    },
    {
-    "id": "663a4c8d",
-    "src": "assets/q21/663a4c8d.gif"
+    "id": "a94aa140",
+    "src": "assets/q21/a94aa140.gif"
    },
    {
-    "id": "e4b4bbc4",
-    "src": "assets/q21/e4b4bbc4.gif"
+    "id": "9e9e0dc7",
+    "src": "assets/q21/9e9e0dc7.gif"
    }
   ]
  },
@@ -424,19 +424,19 @@ window.STUDY_QUESTIONS = [
   "id": "q22",
   "block": "motion_only",
   "prompt": "A student raising one arm to ask a question",
-  "input": "assets/q22/in_e9e82e2a.png",
+  "input": "assets/q22/in_a66c1ab4.png",
   "clips": [
    {
-    "id": "f28ee34e",
-    "src": "assets/q22/f28ee34e.gif"
+    "id": "7daf1d46",
+    "src": "assets/q22/7daf1d46.gif"
    },
    {
-    "id": "be910a80",
-    "src": "assets/q22/be910a80.gif"
+    "id": "06bf7a36",
+    "src": "assets/q22/06bf7a36.gif"
    },
    {
-    "id": "bd062607",
-    "src": "assets/q22/bd062607.gif"
+    "id": "4646579c",
+    "src": "assets/q22/4646579c.gif"
    }
   ]
  },
@@ -444,19 +444,19 @@ window.STUDY_QUESTIONS = [
   "id": "q23",
   "block": "motion_only",
   "prompt": "A boxer throwing a punch",
-  "input": "assets/q23/in_49f4df94.png",
+  "input": "assets/q23/in_72328d76.png",
   "clips": [
    {
-    "id": "47974e3f",
-    "src": "assets/q23/47974e3f.gif"
+    "id": "2eaacc87",
+    "src": "assets/q23/2eaacc87.gif"
    },
    {
-    "id": "a615d0cb",
-    "src": "assets/q23/a615d0cb.gif"
+    "id": "1c5be4e4",
+    "src": "assets/q23/1c5be4e4.gif"
    },
    {
-    "id": "b4a82b36",
-    "src": "assets/q23/b4a82b36.gif"
+    "id": "c9ba7955",
+    "src": "assets/q23/c9ba7955.gif"
    }
   ]
  },
@@ -464,19 +464,19 @@ window.STUDY_QUESTIONS = [
   "id": "q24",
   "block": "motion_only",
   "prompt": "Tweezers opening and closing",
-  "input": "assets/q24/in_fc8d4635.png",
+  "input": "assets/q24/in_86e8614f.png",
   "clips": [
    {
-    "id": "6971355b",
-    "src": "assets/q24/6971355b.gif"
+    "id": "c9603162",
+    "src": "assets/q24/c9603162.gif"
    },
    {
-    "id": "5d900c34",
-    "src": "assets/q24/5d900c34.gif"
+    "id": "b01d1bea",
+    "src": "assets/q24/b01d1bea.gif"
    },
    {
-    "id": "c3b5c944",
-    "src": "assets/q24/c3b5c944.gif"
+    "id": "c9b8c60e",
+    "src": "assets/q24/c9b8c60e.gif"
    }
   ]
  },
@@ -484,19 +484,19 @@ window.STUDY_QUESTIONS = [
   "id": "q25",
   "block": "motion_only",
   "prompt": "A snake slithering",
-  "input": "assets/q25/in_6db40a7b.png",
+  "input": "assets/q25/in_1eacded8.png",
   "clips": [
    {
-    "id": "59c54498",
-    "src": "assets/q25/59c54498.gif"
+    "id": "12f002f0",
+    "src": "assets/q25/12f002f0.gif"
    },
    {
-    "id": "c8306a32",
-    "src": "assets/q25/c8306a32.gif"
+    "id": "a74c2eae",
+    "src": "assets/q25/a74c2eae.gif"
    },
    {
-    "id": "612ea151",
-    "src": "assets/q25/612ea151.gif"
+    "id": "f4469ffe",
+    "src": "assets/q25/f4469ffe.gif"
    }
   ]
  },
@@ -504,19 +504,19 @@ window.STUDY_QUESTIONS = [
   "id": "q26",
   "block": "motion_only",
   "prompt": "A cradle rocking gently",
-  "input": "assets/q26/in_b2a81130.png",
+  "input": "assets/q26/in_560b2a16.png",
   "clips": [
    {
-    "id": "058c39a6",
-    "src": "assets/q26/058c39a6.gif"
+    "id": "adb657a5",
+    "src": "assets/q26/adb657a5.gif"
    },
    {
-    "id": "df6db5e4",
-    "src": "assets/q26/df6db5e4.gif"
+    "id": "03e402e5",
+    "src": "assets/q26/03e402e5.gif"
    },
    {
-    "id": "abd71521",
-    "src": "assets/q26/abd71521.gif"
+    "id": "18b4cfae",
+    "src": "assets/q26/18b4cfae.gif"
    }
   ]
  },
@@ -524,19 +524,19 @@ window.STUDY_QUESTIONS = [
   "id": "q27",
   "block": "motion_only",
   "prompt": "A sad clown drooping, head lowering",
-  "input": "assets/q27/in_32230775.png",
+  "input": "assets/q27/in_dc755e12.png",
   "clips": [
    {
-    "id": "8bcc2ec9",
-    "src": "assets/q27/8bcc2ec9.gif"
+    "id": "21d71857",
+    "src": "assets/q27/21d71857.gif"
    },
    {
-    "id": "c85c507d",
-    "src": "assets/q27/c85c507d.gif"
+    "id": "ca1afc82",
+    "src": "assets/q27/ca1afc82.gif"
    },
    {
-    "id": "09df4443",
-    "src": "assets/q27/09df4443.gif"
+    "id": "da5e3418",
+    "src": "assets/q27/da5e3418.gif"
    }
   ]
  },
@@ -544,19 +544,19 @@ window.STUDY_QUESTIONS = [
   "id": "q28",
   "block": "motion_only",
   "prompt": "An excited puppy bouncing",
-  "input": "assets/q28/in_3d2452dd.png",
+  "input": "assets/q28/in_6fd6a7c8.png",
   "clips": [
    {
-    "id": "04745c33",
-    "src": "assets/q28/04745c33.gif"
+    "id": "b18f7cd0",
+    "src": "assets/q28/b18f7cd0.gif"
    },
    {
-    "id": "3638c285",
-    "src": "assets/q28/3638c285.gif"
+    "id": "bc46dc8b",
+    "src": "assets/q28/bc46dc8b.gif"
    },
    {
-    "id": "5bbbca1f",
-    "src": "assets/q28/5bbbca1f.gif"
+    "id": "3cdc2539",
+    "src": "assets/q28/3cdc2539.gif"
    }
   ]
  },
@@ -564,19 +564,19 @@ window.STUDY_QUESTIONS = [
   "id": "q29",
   "block": "motion_only",
   "prompt": "A hammock swinging in a breeze",
-  "input": "assets/q29/in_bc6a136c.png",
+  "input": "assets/q29/in_ddd4572a.png",
   "clips": [
    {
-    "id": "7924c540",
-    "src": "assets/q29/7924c540.gif"
+    "id": "7e5c4370",
+    "src": "assets/q29/7e5c4370.gif"
    },
    {
-    "id": "b7284f98",
-    "src": "assets/q29/b7284f98.gif"
+    "id": "a9401eaa",
+    "src": "assets/q29/a9401eaa.gif"
    },
    {
-    "id": "6a3a44f3",
-    "src": "assets/q29/6a3a44f3.gif"
+    "id": "73a16708",
+    "src": "assets/q29/73a16708.gif"
    }
   ]
  },
@@ -584,19 +584,19 @@ window.STUDY_QUESTIONS = [
   "id": "q30",
   "block": "motion_only",
   "prompt": "A rubber ball bouncing",
-  "input": "assets/q30/in_4a778610.png",
+  "input": "assets/q30/in_6b0a5299.png",
   "clips": [
    {
-    "id": "eb4100a4",
-    "src": "assets/q30/eb4100a4.gif"
+    "id": "1e01b612",
+    "src": "assets/q30/1e01b612.gif"
    },
    {
-    "id": "ad664a78",
-    "src": "assets/q30/ad664a78.gif"
+    "id": "fe50d1eb",
+    "src": "assets/q30/fe50d1eb.gif"
    },
    {
-    "id": "f7c8636f",
-    "src": "assets/q30/f7c8636f.gif"
+    "id": "dc3c6b8c",
+    "src": "assets/q30/dc3c6b8c.gif"
    }
   ]
  }

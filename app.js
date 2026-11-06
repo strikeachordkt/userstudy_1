@@ -6,7 +6,7 @@
 (function () {
   "use strict";
   const STUDY = "userstudy_1_prompt_adherence";
-  const VERSION = 14;           // 14 = "Original Shape" label (2026-11-06)
+  const VERSION = 15;           // 15 = fencer replaced, section 2 question with bold phrase (2026-11-06)
   const STORE = "us1_state_v" + VERSION;
   const Q = window.STUDY_QUESTIONS || [];
   // *word* is shown in bold
@@ -22,7 +22,7 @@
       intro: ["In this section there is *no deformation*: the letter keeps its original shape and only moves.",
               "Please rank which animation does the best job of *interpreting* the motion in the prompt onto the letter."],
       note: "Section 2: no deformation. The letter keeps its shape and only moves.",
-      question: "Rank the animations from best to worst: which one best interprets the motion in the prompt onto the letter?" }
+      question: "Rank the animations from best to worst: which one *best interprets the motion in the prompt* onto the letter?" }
   };
   const app = document.getElementById("app");
 
