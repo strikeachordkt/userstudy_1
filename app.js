@@ -6,17 +6,17 @@
 (function () {
   "use strict";
   const STUDY = "userstudy_1_prompt_adherence";
-  const VERSION = 10;           // 10 = section intros, letter shown at animation size (2026-11-06)
+  const VERSION = 11;           // 11 = instructions reworded by the user (2026-11-06)
   const STORE = "us1_state_v" + VERSION;
   const Q = window.STUDY_QUESTIONS || [];
   // *word* is shown in bold
   const BLOCKS = {
     shape_motion: {
       title: "Section 1 of 2",
-      intro: ["In this section, each method *deforms the letter*: its shape is reshaped toward the prompt and then animated, so the letter will not look exactly like the original.",
-              "Rank the three animations by how well their motion performs the action described in the prompt."],
+      intro: ["In this section, each method *deforms the letter*: its shape is reshaped toward the prompt and then animated, so the letter will not look exactly like the original however, the output should still have the basic topology/structure of the letter.",
+              "Rank the three animations by how well their motion performs the action described in the prompt in a strong way while keeping the shape of input letter."],
       note: "Section 1: the letter's shape is deformed toward the prompt and animated.",
-      question: "Rank the animations from best to worst: how well does each one perform the action in the prompt?" },
+      question: "Rank the animations from best to worst: how well does each one perform the action in the prompt while keeping the input letter shape, keeping realistic motion and visuals?" },
     motion_only: {
       title: "Section 2 of 2",
       intro: ["In this section there is *no deformation*: the letter keeps its original shape and only moves.",
@@ -85,13 +85,12 @@
     app.append(
       el("h1", {}, "Animated letters: which one follows the prompt?"),
       el("div", { class: "panel" },
-        el("p", {}, el("strong", {}, "This study has two sections of " + (Q.length / 2) + " pages each."), " Each page shows a short text prompt, the original letter, and three looping animations of that letter made by different methods."),
+        el("p", {}, el("strong", {}, "This study has two sections of " + (Q.length / 2) + " pages each."), " It should take less than 5 minutes to complete both. Each page shows a short text prompt, the original letter, and three looping animations of that letter made by different methods."),
         el("ul", { class: "steps" },
           el("li", {}, "Watch all three animations for a few loops."),
           el("li", {}, "Rank them from best to worst by how well their motion performs the action in the prompt. Click the best one first, then the second best; the last one is ranked for you."),
-          el("li", {}, "Judge the motion: does the letter move the way the prompt says? Small differences in drawing quality do not matter here.")),
-        el("p", {}, "Each section starts with a short note on what to look for. In total it takes about " + Math.max(5, Math.round(Q.length / 2)) + " minutes. There are no right or wrong answers."),
-        el("p", { class: "muted small" }, "Your answers stay in this browser until the end, where you download them as a small file and send it back to us. Nothing else is recorded.")),
+          el("li", {}, "Judge the motion based on how well it follows the prompt while keeping good motion quality.")),
+        el("p", {}, "Each section starts with a short note on what to look for. In total it takes about " + Math.max(5, Math.round(Q.length / 2)) + " minutes.")),
       el("div", { class: "nav" }, el("span"),
         el("button", { class: "btn", onclick: () => {
           state.started = state.started || new Date().toISOString();
