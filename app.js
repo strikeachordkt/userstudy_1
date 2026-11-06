@@ -6,7 +6,7 @@
 (function () {
   "use strict";
   const STUDY = "userstudy_1_prompt_adherence";
-  const VERSION = 13;           // 13 = "less than 5 minutes" only (2026-11-06)
+  const VERSION = 14;           // 14 = "Original Shape" label (2026-11-06)
   const STORE = "us1_state_v" + VERSION;
   const Q = window.STUDY_QUESTIONS || [];
   // *word* is shown in bold
@@ -85,7 +85,7 @@
     app.append(
       el("h1", {}, "Animated letters: which one follows the prompt?"),
       el("div", { class: "panel" },
-        el("p", {}, el("strong", {}, "This study has two sections of " + (Q.length / 2) + " pages each."), " It should take less than 5 minutes to complete both. Each page shows a short text prompt, the original letter, and three looping animations of that letter made by different methods."),
+        el("p", {}, el("strong", {}, "This study has two sections of " + (Q.length / 2) + " pages each."), " It should take less than 5 minutes to complete both. Each page shows a short text prompt, the original shape, and three looping animations of that letter made by different methods."),
         el("ul", { class: "steps" },
           el("li", {}, "Watch all three animations for a few loops."),
           el("li", {}, "Rank them from best to worst by how well their motion performs the action in the prompt. Click the best one first, then the second best; the last one is ranked for you."),
@@ -172,7 +172,7 @@
         el("p", { class: "prompt" }, q.prompt),
         el("p", { class: "question" }, ...rich(block.question)),
         el("div", { class: "row" },
-          el("div", { class: "source" }, el("img", { src: q.input, alt: "The original letter" }), el("div", { class: "lab" }, "Original letter")),   // same size as each animation
+          el("div", { class: "source" }, el("img", { src: q.input, alt: "The original shape" }), el("div", { class: "lab" }, "Original Shape")),   // same size as each animation
           el("div", { class: "choices" }, buttons)),
         el("div", { class: "rankbar" }, hint, clear)),
       el("div", { class: "nav" }, back, next));
