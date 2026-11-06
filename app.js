@@ -6,7 +6,7 @@
 (function () {
   "use strict";
   const STUDY = "userstudy_1_prompt_adherence";
-  const VERSION = 5;            // 5 = three Shape + Motion examples resampled (2026-11-06)
+  const VERSION = 6;            // 6 = Part 1 redrawn except the lizard (2026-11-06)
   const STORE = "us1_state_v" + VERSION;
   const Q = window.STUDY_QUESTIONS || [];
   const BLOCKS = {
