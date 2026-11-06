@@ -6,7 +6,7 @@
 (function () {
   "use strict";
   const STUDY = "userstudy_1_prompt_adherence";
-  const VERSION = 4;            // 4 = rank all three, best to worst (2026-11-06)
+  const VERSION = 5;            // 5 = three Shape + Motion examples resampled (2026-11-06)
   const STORE = "us1_state_v" + VERSION;
   const Q = window.STUDY_QUESTIONS || [];
   const BLOCKS = {
