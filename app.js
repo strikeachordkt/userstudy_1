@@ -6,7 +6,7 @@
 (function () {
   "use strict";
   const STUDY = "userstudy_1_prompt_adherence";
-  const VERSION = 2;            // 2 = 20 pages (10 + 10), reselected 2026-11-06
+  const VERSION = 3;            // 3 = Part 1 resampled (seed 20261108), 2026-11-06
   const STORE = "us1_state_v" + VERSION;
   const Q = window.STUDY_QUESTIONS || [];
   const BLOCKS = {
