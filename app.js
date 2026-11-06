@@ -6,7 +6,7 @@
 (function () {
   "use strict";
   const STUDY = "userstudy_1_prompt_adherence";
-  const VERSION = 16;         // 16 = answers saved to git through the Worker (2026-11-06)
+  const VERSION = 17;         // 17 = final selection: Section 1 paper cases + Section 2 no-shape cases (2026-11-06)
   const STORE = "us1_state_v" + VERSION;
   const SUBMIT_URL = "";         // Cloudflare Worker that commits answers to git (userstudies/submit_worker); empty = download only
   const Q = window.STUDY_QUESTIONS || [];
