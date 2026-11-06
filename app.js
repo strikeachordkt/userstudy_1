@@ -6,7 +6,7 @@
 (function () {
   "use strict";
   const STUDY = "userstudy_1_prompt_adherence";
-  const VERSION = 17;         // 17 = final selection: Section 1 paper cases + Section 2 no-shape cases (2026-11-06)
+  const VERSION = 18;         // 18 = q03 horseshoe magnet, q20 tail wagging (2026-11-06); 17 answers score with key_v17.json
   const STORE = "us1_state_v" + VERSION;
   const SUBMIT_URL = "https://script.google.com/macros/s/AKfycbzAROXydxaAtQYXPOmOT-Eaym6FIzo-LJIo8dxoVcNalQQ2iUsAj95FqXgCMrapHKV61g/exec";         // Google Apps Script web app that adds answers to a Google Sheet (userstudies/sheet_collector); empty = download only
   const Q = window.STUDY_QUESTIONS || [];
