@@ -100,3 +100,7 @@ textarea { width: 100%; min-height: 110px; font: 13px/1.4 ui-monospace, SFMono-R
   .source img { width: 100%; height: auto; }
   .source .lab { font-size: .85rem; margin-top: 4px; }
 }
+
+/* question in regular weight so its bold key phrases stand out */
+.question { font-weight: 400; font-size: 1.05rem; }
+.question strong { font-weight: 700; }

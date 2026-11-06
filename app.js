@@ -6,7 +6,7 @@
 (function () {
   "use strict";
   const STUDY = "userstudy_1_prompt_adherence";
-  const VERSION = 11;           // 11 = instructions reworded by the user (2026-11-06)
+  const VERSION = 12;           // 12 = section 1 question reworded, with bold key phrases (2026-11-06)
   const STORE = "us1_state_v" + VERSION;
   const Q = window.STUDY_QUESTIONS || [];
   // *word* is shown in bold
@@ -16,7 +16,7 @@
       intro: ["In this section, each method *deforms the letter*: its shape is reshaped toward the prompt and then animated, so the letter will not look exactly like the original however, the output should still have the basic topology/structure of the letter.",
               "Rank the three animations by how well their motion performs the action described in the prompt in a strong way while keeping the shape of input letter."],
       note: "Section 1: the letter's shape is deformed toward the prompt and animated.",
-      question: "Rank the animations from best to worst: how well does each one perform the action in the prompt while keeping the input letter shape, keeping realistic motion and visuals?" },
+      question: "Rank the animations from best to worst based on how well each one *performs the prompted action*, *preserves the original letter* shape with *natural motion*." },
     motion_only: {
       title: "Section 2 of 2",
       intro: ["In this section there is *no deformation*: the letter keeps its original shape and only moves.",
@@ -170,7 +170,7 @@
         el("p", { class: "muted small blocknote" }, block.note),
         el("div", { class: "muted small" }, "Prompt"),
         el("p", { class: "prompt" }, q.prompt),
-        el("p", { class: "question" }, block.question),
+        el("p", { class: "question" }, ...rich(block.question)),
         el("div", { class: "row" },
           el("div", { class: "source" }, el("img", { src: q.input, alt: "The original letter" }), el("div", { class: "lab" }, "Original letter")),   // same size as each animation
           el("div", { class: "choices" }, buttons)),
