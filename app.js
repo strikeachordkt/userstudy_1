@@ -6,12 +6,23 @@
 (function () {
   "use strict";
   const STUDY = "userstudy_1_prompt_adherence";
-  const VERSION = 9;            // 9 = 15 + 15 from the project site only (2026-11-06)
+  const VERSION = 10;           // 10 = section intros, letter shown at animation size (2026-11-06)
   const STORE = "us1_state_v" + VERSION;
   const Q = window.STUDY_QUESTIONS || [];
+  // *word* is shown in bold
   const BLOCKS = {
-    shape_motion: { title: "Part 1 of 2", note: "In this part each method may reshape the letter toward the prompt and animate it." },
-    motion_only: { title: "Part 2 of 2", note: "In this part the letter keeps its shape. Only its motion differs between the animations." }
+    shape_motion: {
+      title: "Section 1 of 2",
+      intro: ["In this section, each method *deforms the letter*: its shape is reshaped toward the prompt and then animated, so the letter will not look exactly like the original.",
+              "Rank the three animations by how well their motion performs the action described in the prompt."],
+      note: "Section 1: the letter's shape is deformed toward the prompt and animated.",
+      question: "Rank the animations from best to worst: how well does each one perform the action in the prompt?" },
+    motion_only: {
+      title: "Section 2 of 2",
+      intro: ["In this section there is *no deformation*: the letter keeps its original shape and only moves.",
+              "Please rank which animation does the best job of *interpreting* the motion in the prompt onto the letter."],
+      note: "Section 2: no deformation. The letter keeps its shape and only moves.",
+      question: "Rank the animations from best to worst: which one best interprets the motion in the prompt onto the letter?" }
   };
   const app = document.getElementById("app");
 
@@ -39,6 +50,9 @@
     for (const c of kids.flat()) if (c !== null && c !== undefined) n.append(c.nodeType ? c : document.createTextNode(c));
     return n;
   }
+  function rich(text) {                                  // "*bold*" -> <strong>bold</strong>
+    return text.split(/(\*[^*]+\*)/).filter(Boolean).map(t => t.startsWith("*") ? el("strong", {}, t.slice(1, -1)) : t);
+  }
   function save() { try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) { /* private mode: fine */ } }
   function load() { try { return JSON.parse(localStorage.getItem(STORE) || "null"); } catch (e) { return null; } }
 
@@ -49,7 +63,7 @@
     const clipOrder = {};
     for (const q of Q) clipOrder[q.id] = shuffled(q.clips.map(c => c.id));
     return { study: STUDY, version: VERSION, session: rid(), started: null, finished: null,
-             order, clipOrder, answers: {}, page: -1 };
+             order, clipOrder, answers: {}, page: -1, seenIntro: {} };
   }
   let state = load();
   if (!state || state.version !== VERSION || !state.order || state.order.length !== Q.length) state = fresh();
@@ -61,6 +75,9 @@
     app.replaceChildren();
     if (state.page < 0) return intro();
     if (state.page >= state.order.length) return done();
+    const blk = byId[state.order[state.page]].block;           // first page of a section: its intro first
+    const first = state.order.findIndex(id => byId[id].block === blk);
+    if (state.page === first && !(state.seenIntro || {})[blk]) return sectionIntro(blk, state.page);
     return question(state.page);
   }
 
@@ -68,18 +85,30 @@
     app.append(
       el("h1", {}, "Animated letters: which one follows the prompt?"),
       el("div", { class: "panel" },
-        el("p", {}, "Each page shows a short text prompt, the original letter, and three looping animations of that letter made by different methods."),
+        el("p", {}, el("strong", {}, "This study has two sections of " + (Q.length / 2) + " pages each."), " Each page shows a short text prompt, the original letter, and three looping animations of that letter made by different methods."),
         el("ul", { class: "steps" },
           el("li", {}, "Watch all three animations for a few loops."),
           el("li", {}, "Rank them from best to worst by how well their motion performs the action in the prompt. Click the best one first, then the second best; the last one is ranked for you."),
           el("li", {}, "Judge the motion: does the letter move the way the prompt says? Small differences in drawing quality do not matter here.")),
-        el("p", {}, "There are " + Q.length + " pages in two parts and it takes about " + Math.max(5, Math.round(Q.length / 2)) + " minutes. There are no right or wrong answers."),
+        el("p", {}, "Each section starts with a short note on what to look for. In total it takes about " + Math.max(5, Math.round(Q.length / 2)) + " minutes. There are no right or wrong answers."),
         el("p", { class: "muted small" }, "Your answers stay in this browser until the end, where you download them as a small file and send it back to us. Nothing else is recorded.")),
       el("div", { class: "nav" }, el("span"),
         el("button", { class: "btn", onclick: () => {
           state.started = state.started || new Date().toISOString();
           state.page = 0; save(); render();
         } }, Object.keys(state.answers).length ? "Continue" : "Start")));
+  }
+
+  function sectionIntro(blk, i) {
+    const b = BLOCKS[blk];
+    app.append(
+      el("div", { class: "topbar" }, el("strong", {}, b.title), el("span", { class: "muted small" }, "Page " + (i + 1) + " of " + state.order.length)),
+      el("div", { class: "progress", "aria-hidden": "true" }, el("div", { style: "width:" + Math.round(100 * i / state.order.length) + "%" })),
+      el("div", { class: "panel sectionintro" }, el("h2", {}, b.title), ...b.intro.map(t => el("p", {}, ...rich(t)))),
+      el("div", { class: "nav" },
+        el("button", { class: "btn secondary", onclick: () => { state.page = i - 1; save(); render(); } }, "Back"),
+        el("button", { class: "btn", onclick: () => { state.seenIntro = Object.assign(state.seenIntro || {}, { [blk]: true }); save(); render(); } },
+           "Start " + b.title.replace(" of 2", "").toLowerCase())));
   }
 
   function question(i) {
@@ -142,9 +171,9 @@
         el("p", { class: "muted small blocknote" }, block.note),
         el("div", { class: "muted small" }, "Prompt"),
         el("p", { class: "prompt" }, q.prompt),
-        el("p", { class: "question" }, "Rank the animations from best to worst: how well does each one perform the action in the prompt?"),
+        el("p", { class: "question" }, block.question),
         el("div", { class: "row" },
-          el("div", { class: "source" }, el("img", { src: q.input, alt: "The original letter" }), el("div", { class: "lab" }, "Original letter")),
+          el("div", { class: "source" }, el("img", { src: q.input, alt: "The original letter" }), el("div", { class: "lab" }, "Original letter")),   // same size as each animation
           el("div", { class: "choices" }, buttons)),
         el("div", { class: "rankbar" }, hint, clear)),
       el("div", { class: "nav" }, back, next));

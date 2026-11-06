@@ -85,3 +85,18 @@ textarea { width: 100%; min-height: 110px; font: 13px/1.4 ui-monospace, SFMono-R
 .rankbar .btn { padding: 6px 14px; font-size: .9rem; }
 @media (max-width: 720px) { .rank { top: 4px; left: 4px; padding: 1px 6px; font-size: .7rem; } }
 .choice[data-rank="1"] { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+
+/* the original letter as a fourth card, exactly the size of each animation */
+.row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; align-items: start; }
+.choices { display: contents; }
+.source { width: auto; border: 2px solid var(--line); border-radius: var(--radius); padding: 10px; background: #f3f3f0; text-align: center; }
+.source img { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: contain; background: #fff; border: 0; border-radius: 6px; display: block; }
+.source .lab { font-weight: 700; margin-top: 8px; color: var(--muted); font-size: 1rem; }
+.sectionintro p { font-size: 1.05rem; }
+@media (max-width: 720px) {
+  .row { gap: 8px; }
+  .source { padding: 5px; border-radius: 9px; }
+  .source { width: auto; }
+  .source img { width: 100%; height: auto; }
+  .source .lab { font-size: .85rem; margin-top: 4px; }
+}
