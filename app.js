@@ -48,7 +48,7 @@
     for (const b of Object.keys(BLOCKS)) order.push(...shuffled(Q.filter(q => q.block === b).map(q => q.id)));
     const clipOrder = {};
     for (const q of Q) clipOrder[q.id] = shuffled(q.clips.map(c => c.id));
-    return { study: STUDY, version: VERSION, session: rid(), participant: "", started: null, finished: null,
+    return { study: STUDY, version: VERSION, session: rid(), started: null, finished: null,
              order, clipOrder, answers: {}, page: -1 };
   }
   let state = load();
@@ -65,7 +65,6 @@
   }
 
   function intro() {
-    const pid = el("input", { type: "text", id: "pid", placeholder: "optional", value: state.participant || "", autocomplete: "off" });
     app.append(
       el("h1", {}, "Animated letters: which one follows the prompt?"),
       el("div", { class: "panel" },
@@ -76,12 +75,9 @@
           el("li", {}, "Judge the motion: does the letter move the way the prompt says? Small differences in drawing quality do not matter here.")),
         el("p", {}, "There are " + Q.length + " pages in two short parts and it takes about 5 minutes. There are no right or wrong answers."),
         el("p", { class: "muted small" }, "Your answers stay in this browser until the end, where you download them as a small file and send it back to us. Nothing else is recorded.")),
-      el("div", { class: "panel" },
-        el("label", { for: "pid" }, el("strong", {}, "Name or participant ID "), el("span", { class: "muted" }, "(optional)")),
-        el("div", { style: "margin-top:8px" }, pid)),
       el("div", { class: "nav" }, el("span"),
         el("button", { class: "btn", onclick: () => {
-          state.participant = pid.value.trim(); state.started = state.started || new Date().toISOString();
+          state.started = state.started || new Date().toISOString();
           state.page = 0; save(); render();
         } }, Object.keys(state.answers).length ? "Continue" : "Start")));
   }
@@ -131,7 +127,7 @@
 
   function result() {
     return {
-      study: STUDY, version: VERSION, session: state.session, participant: state.participant,
+      study: STUDY, version: VERSION, session: state.session,
       started: state.started, finished: state.finished, user_agent: navigator.userAgent,
       answers: state.order.map((qid, k) => Object.assign({ question: qid, page: k + 1, block: byId[qid].block, prompt: byId[qid].prompt },
                                                         state.answers[qid] || {}))
@@ -141,7 +137,7 @@
   function done() {
     const data = result();
     const text = JSON.stringify(data, null, 1);
-    const fname = "us1_" + (state.participant ? state.participant.replace(/[^A-Za-z0-9_-]+/g, "_") + "_" : "") + state.session + ".json";
+    const fname = "us1_" + state.session + ".json";
     const missing = data.answers.filter(a => !a.choice).length;
     const download = () => {
       const url = URL.createObjectURL(new Blob([text], { type: "application/json" }));
