@@ -6,7 +6,7 @@
 (function () {
   "use strict";
   const STUDY = "userstudy_1_prompt_adherence";
-  const VERSION = 19;         // 19 = reset (2026-11-08): all examples removed, 10 empty slots per section; 18 = q03 horseshoe magnet, q20 tail wagging (2026-11-06); 17 answers score with key_v17.json
+  const VERSION = 20;         // 20 = all 20 examples in, stale saved states dropped (2026-11-08); 19 = reset (2026-11-08): all examples removed, 10 empty slots per section; 18 = q03 horseshoe magnet, q20 tail wagging (2026-11-06); 17 answers score with key_v17.json
   const STORE = "us1_state_v" + VERSION;
   const SUBMIT_URL = "https://script.google.com/macros/s/AKfycbzAROXydxaAtQYXPOmOT-Eaym6FIzo-LJIo8dxoVcNalQQ2iUsAj95FqXgCMrapHKV61g/exec";         // Google Apps Script web app that adds answers to a Google Sheet (userstudies/sheet_collector); empty = download only
   const Q = window.STUDY_QUESTIONS || [];
@@ -103,7 +103,12 @@
              order, clipOrder, answers: {}, page: -1, seenIntro: {} };
   }
   let state = load();
-  if (!state || state.version !== VERSION || !state.order || state.order.length !== Q.length) state = fresh();
+  // a saved state only counts if it was made for exactly these questions and clip files (a rebuild renames the
+  // clips, and a state saved while a page was still empty would otherwise show that page with no animations)
+  const sameQs = st => st && Array.isArray(st.order) && st.order.length === Q.length && Q.every(q =>
+    st.order.includes(q.id) && st.clipOrder && Array.isArray(st.clipOrder[q.id]) &&
+    st.clipOrder[q.id].length === q.clips.length && q.clips.every(c => st.clipOrder[q.id].includes(c.id)));
+  if (!state || state.version !== VERSION || !sameQs(state)) state = fresh();
   const byId = Object.fromEntries(Q.map(q => [q.id, q]));
 
   // ---------- screens ----------
