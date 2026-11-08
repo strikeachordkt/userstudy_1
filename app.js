@@ -128,11 +128,11 @@
     app.append(
       el("h1", {}, "Animated letters: which one follows the prompt?"),
       el("div", { class: "panel" },
-        el("p", {}, el("strong", {}, "This study has two sections of " + (Q.length / 2) + " pages each."), " It should take less than 5 minutes to complete both. Each page shows a short text prompt, the original letter, and three looping animations of that letter made by different methods."),
+        el("p", {}, el("strong", {}, "This study has two sections of " + (Q.length / 2) + " pages each."), " It should take less than 5 minutes to complete both. Each page shows a short text prompt, the original letter/glyph, and three animations of that letter made by different methods."),
         el("ul", { class: "steps" },
           el("li", {}, "Watch all three animations. Each one plays once; press Replay to watch them again."),
           el("li", {}, "Rank them from best to worst by how well their motion performs the action in the prompt. Click the best one first, then the second best; the last one is ranked for you."),
-          el("li", {}, "Judge the motion based on how well it follows the prompt while keeping good motion quality.")),
+          el("li", {}, "Judge the motion based on how well it follows the guide prompt while keeping good motion quality and preserving the general shape of the letter.")),
         el("p", {}, "Each section starts with a short note on what to look for.")),
       el("div", { class: "nav" }, el("span"),
         el("button", { class: "btn", onclick: () => {
