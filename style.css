@@ -109,3 +109,7 @@ textarea { width: 100%; min-height: 110px; font: 13px/1.4 ui-monospace, SFMono-R
 .status { font-size: 1.05rem; font-weight: 600; }
 details.backup { margin-top: 16px; }
 details.backup summary { cursor: pointer; }
+
+/* replay control at the top of each example (animations play once) */
+.replaybar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 0 0 10px; }
+.replaybar .btn { padding: 6px 14px; font-size: .9rem; }

@@ -1,8 +1,8 @@
 # User study 1: prompt adherence
 
 A static web page (works on GitHub Pages or from any web server). Participants see 20 pages. Each page
-shows a text prompt, the original letter, and three looping animations of that letter made by
-different methods, labelled only A, B and C. They rank the three from best to worst by how well their motion performs the
+shows a text prompt, the original letter, and three animations of that letter made by
+different methods, labelled only A, B and C. Each animation plays once (the app removes the GIF loop flag on load); a Replay button restarts all three together. They rank the three from best to worst by how well their motion performs the
 action in the prompt.
 
 - **Part 1 (10 pages):** the letter may be reshaped toward the prompt and animated.

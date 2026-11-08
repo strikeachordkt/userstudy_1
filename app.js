@@ -54,6 +54,42 @@
   function rich(text) {                                  // "*bold*" -> <strong>bold</strong>
     return text.split(/(\*[^*]+\*)/).filter(Boolean).map(t => t.startsWith("*") ? el("strong", {}, t.slice(1, -1)) : t);
   }
+  // ---------- play each animation once ----------
+  // A GIF loops only if it carries a NETSCAPE2.0 (or ANIMEXTS1.0) application block. We fetch each clip,
+  // drop that block and show the result from a blob URL, so it plays once and stops on its last frame.
+  // A new blob URL restarts it (Replay). If fetching fails (e.g. opened from file://), the original file is shown.
+  function stripLoop(b) {
+    if (b.length < 13 || String.fromCharCode(b[0], b[1], b[2]) !== "GIF") return b;
+    let i = 13;
+    if (b[10] & 0x80) i += 3 * (1 << ((b[10] & 7) + 1));          // global colour table
+    const skipSub = j => { while (j < b.length && b[j] !== 0) j += b[j] + 1; return j + 1; };
+    while (i < b.length) {
+      if (b[i] === 0x21) {                                       // extension
+        if (b[i + 1] === 0xFF && b[i + 2] === 0x0B) {
+          const id = String.fromCharCode(...b.subarray(i + 3, i + 14));
+          if (id === "NETSCAPE2.0" || id === "ANIMEXTS1.0") {
+            const end = skipSub(i + 2), out = new Uint8Array(b.length - (end - i));
+            out.set(b.subarray(0, i)); out.set(b.subarray(end), i);
+            return out;
+          }
+        }
+        i = skipSub(i + 2);
+      } else if (b[i] === 0x2C) {                                // image: descriptor, local colour table, LZW data
+        const lct = b[i + 9] & 0x80 ? 3 * (1 << ((b[i + 9] & 7) + 1)) : 0;
+        i = skipSub(i + 10 + lct + 1);
+      } else break;                                              // 0x3B trailer or unknown
+    }
+    return b;
+  }
+  const onceCache = {};
+  function playOnce(src) {                                       // -> Promise<Blob or null>, fetched once per clip
+    if (!onceCache[src]) onceCache[src] = fetch(src).then(r => { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); })
+      .then(buf => new Blob([stripLoop(new Uint8Array(buf))], { type: "image/gif" })).catch(() => null);
+    return onceCache[src];
+  }
+  let liveUrls = [];
+  function releaseUrls() { liveUrls.forEach(u => URL.revokeObjectURL(u)); liveUrls = []; }
+
   function save() { try { localStorage.setItem(STORE, JSON.stringify(state)); } catch (e) { /* private mode: fine */ } }
   function load() { try { return JSON.parse(localStorage.getItem(STORE) || "null"); } catch (e) { return null; } }
 
@@ -73,6 +109,7 @@
   // ---------- screens ----------
   function render() {
     window.scrollTo(0, 0);
+    releaseUrls();
     app.replaceChildren();
     if (state.page < 0) return intro();
     if (state.page >= state.order.length) return done();
@@ -88,7 +125,7 @@
       el("div", { class: "panel" },
         el("p", {}, el("strong", {}, "This study has two sections of " + (Q.length / 2) + " pages each."), " It should take less than 5 minutes to complete both. Each page shows a short text prompt, the original letter, and three looping animations of that letter made by different methods."),
         el("ul", { class: "steps" },
-          el("li", {}, "Watch all three animations for a few loops."),
+          el("li", {}, "Watch all three animations. Each one plays once; press Replay to watch them again."),
           el("li", {}, "Rank them from best to worst by how well their motion performs the action in the prompt. Click the best one first, then the second best; the last one is ranked for you."),
           el("li", {}, "Judge the motion based on how well it follows the prompt while keeping good motion quality.")),
         el("p", {}, "Each section starts with a short note on what to look for.")),
@@ -129,19 +166,19 @@
     const ans = state.answers[q.id];
     const ids = state.clipOrder[q.id];
     const clipById = Object.fromEntries(q.clips.map(c => [c.id, c]));
-    const bust = "?v=" + shownAt;                       // restart every GIF together on each visit
     const N = ids.length, ORD = ["1st", "2nd", "3rd", "4th"];
     let rank = (ans && ans.ranking && ans.ranking.length === N) ? ans.ranking.slice() : [];   // clip ids, best -> worst
     let resets = ans ? (ans.resets || 0) : 0;
+    let replays = ans ? (ans.replays || 0) : 0;
     const next = el("button", { class: "btn", disabled: "" }, i === state.order.length - 1 ? "Finish" : "Next");
     const hint = el("p", { class: "muted small hint" });
     const clear = el("button", { class: "btn secondary", type: "button" }, "Clear ranking");
-    const badges = {};
+    const badges = {}, imgs = {};
     const buttons = ids.map((cid, k) => {
       const letter = "ABC"[k];
       badges[cid] = el("div", { class: "rank" });
       const b = el("button", { class: "choice", type: "button", "aria-label": "Animation " + letter },
-        badges[cid], el("img", { src: clipById[cid].src + bust, alt: "Animation " + letter, loading: "eager" }),
+        badges[cid], imgs[cid] = el("img", { alt: "Animation " + letter, loading: "eager" }),
         el("div", { class: "lab" }, "Animation " + letter));
       b.addEventListener("click", () => {
         if (rank.includes(cid)) return;                    // already ranked: use Clear ranking to redo
@@ -150,6 +187,21 @@
         paint(); commit();
       });
       return b;
+    });
+    const replay = el("button", { class: "btn secondary", type: "button", disabled: "" }, "\u21BB Replay");
+    let blobs = null;
+    function play() {                                        // (re)start all three together
+      releaseUrls();
+      ids.forEach(cid => {
+        if (blobs && blobs[cid]) { const u = URL.createObjectURL(blobs[cid]); liveUrls.push(u); imgs[cid].src = u; }
+        else imgs[cid].src = clipById[cid].src + "?v=" + Date.now();
+      });
+    }
+    replay.addEventListener("click", () => { replays++; play(); commit(); });
+    Promise.all(ids.map(cid => playOnce(clipById[cid].src))).then(bs => {
+      if (state.order[state.page] !== q.id) return;          // page changed while loading
+      blobs = Object.fromEntries(ids.map((cid, k) => [cid, bs[k]]));
+      play(); replay.removeAttribute("disabled");
     });
     function paint() {
       buttons.forEach((b, k) => {
@@ -166,7 +218,7 @@
     }
     function commit() {
       if (rank.length === N) state.answers[q.id] = { ranking: rank.slice(), positions: rank.map(c => "ABC"[ids.indexOf(c)]),
-                                                     shown: ids, seconds_to_rank: Math.round((Date.now() - shownAt) / 100) / 10, resets };
+                                                     shown: ids, seconds_to_rank: Math.round((Date.now() - shownAt) / 100) / 10, resets, replays };
       else delete state.answers[q.id];
       save();
     }
@@ -183,6 +235,7 @@
         el("div", { class: "muted small" }, "Prompt"),
         el("p", { class: "prompt" }, q.prompt),
         el("p", { class: "question" }, ...rich(block.question)),
+        el("div", { class: "replaybar" }, el("span", { class: "muted small" }, "Each animation plays once."), replay),
         el("div", { class: "row" },
           el("div", { class: "source" }, el("img", { src: q.input, alt: "The original shape" }), el("div", { class: "lab" }, "Original Shape")),   // same size as each animation
           el("div", { class: "choices" }, buttons)),
@@ -258,6 +311,6 @@
     else state.page = Math.max(-1, Math.min(Q.length - 1, parseInt(pv, 10) || 0));
   }
   // preload every clip once so pages show instantly
-  for (const q of Q) for (const c of q.clips) { const im = new Image(); im.src = c.src; }
+  for (const q of Q) for (const c of q.clips) playOnce(c.src);
   render();
 })();
