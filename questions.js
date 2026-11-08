@@ -4,46 +4,59 @@ window.STUDY_QUESTIONS = [
   "id": "q01",
   "block": "shape_motion",
   "prompt": "a slender deer bounding, its long legs swinging far forward then tucking back beneath the body",
-  "input": "assets/q01/in_1f637449.png",
+  "input": "assets/q01/in_2d15264c.png",
   "clips": [
    {
-    "id": "3237b526",
-    "src": "assets/q01/3237b526.gif"
+    "id": "8d455594",
+    "src": "assets/q01/8d455594.gif"
    },
    {
-    "id": "18172906",
-    "src": "assets/q01/18172906.gif"
+    "id": "31a37f9c",
+    "src": "assets/q01/31a37f9c.gif"
    },
    {
-    "id": "71780625",
-    "src": "assets/q01/71780625.gif"
+    "id": "15a50dfa",
+    "src": "assets/q01/15a50dfa.gif"
    }
   ]
  },
  {
   "id": "q02",
   "block": "shape_motion",
-  "prompt": "",
-  "input": "",
-  "clips": []
+  "prompt": "a dog offering its paw, body seated",
+  "input": "assets/q02/in_68e9c18c.png",
+  "clips": [
+   {
+    "id": "94e92453",
+    "src": "assets/q02/94e92453.gif"
+   },
+   {
+    "id": "80079f25",
+    "src": "assets/q02/80079f25.gif"
+   },
+   {
+    "id": "88c7cf61",
+    "src": "assets/q02/88c7cf61.gif"
+   }
+  ]
  },
  {
   "id": "q03",
   "block": "shape_motion",
   "prompt": "a lizard doing push-ups, tail flat",
-  "input": "assets/q03/in_f49f5022.png",
+  "input": "assets/q03/in_feaf5c5f.png",
   "clips": [
    {
-    "id": "26f97343",
-    "src": "assets/q03/26f97343.gif"
+    "id": "d6e08ca3",
+    "src": "assets/q03/d6e08ca3.gif"
    },
    {
-    "id": "e2199c09",
-    "src": "assets/q03/e2199c09.gif"
+    "id": "75cd0c17",
+    "src": "assets/q03/75cd0c17.gif"
    },
    {
-    "id": "2d903fff",
-    "src": "assets/q03/2d903fff.gif"
+    "id": "d46d7b83",
+    "src": "assets/q03/d46d7b83.gif"
    }
   ]
  },
