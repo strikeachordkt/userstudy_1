@@ -193,15 +193,21 @@
     function play() {                                        // (re)start all three together
       releaseUrls();
       ids.forEach(cid => {
-        if (blobs && blobs[cid]) { const u = URL.createObjectURL(blobs[cid]); liveUrls.push(u); imgs[cid].src = u; }
-        else imgs[cid].src = clipById[cid].src + "?v=" + Date.now();
+        const img = imgs[cid], plain = () => { img.onerror = null; img.src = clipById[cid].src + "?v=" + Date.now(); };
+        if (blobs && blobs[cid]) {
+          const u = URL.createObjectURL(blobs[cid]); liveUrls.push(u);
+          img.onerror = plain;                               // a browser that will not show the play-once copy gets the file itself
+          img.src = u;
+        } else plain();
       });
     }
     replay.addEventListener("click", () => { replays++; play(); commit(); });
+    let started = false;
+    const start = () => { if (started || state.order[state.page] !== q.id) return; started = true; play(); replay.removeAttribute("disabled"); };
+    setTimeout(start, 3000);                                 // slow or blocked fetch: show the files themselves after 3 s
     Promise.all(ids.map(cid => playOnce(clipById[cid].src))).then(bs => {
-      if (state.order[state.page] !== q.id) return;          // page changed while loading
-      blobs = Object.fromEntries(ids.map((cid, k) => [cid, bs[k]]));
-      play(); replay.removeAttribute("disabled");
+      blobs = Object.fromEntries(ids.map((cid, k) => [cid, bs[k]]));   // later replays use the play-once copies
+      start();
     });
     function paint() {
       buttons.forEach((b, k) => {
