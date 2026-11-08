@@ -6,7 +6,7 @@
 (function () {
   "use strict";
   const STUDY = "userstudy_1_prompt_adherence";
-  const VERSION = 18;         // 18 = q03 horseshoe magnet, q20 tail wagging (2026-11-06); 17 answers score with key_v17.json
+  const VERSION = 19;         // 19 = reset (2026-11-08): all examples removed, 10 empty slots per section; 18 = q03 horseshoe magnet, q20 tail wagging (2026-11-06); 17 answers score with key_v17.json
   const STORE = "us1_state_v" + VERSION;
   const SUBMIT_URL = "https://script.google.com/macros/s/AKfycbzAROXydxaAtQYXPOmOT-Eaym6FIzo-LJIo8dxoVcNalQQ2iUsAj95FqXgCMrapHKV61g/exec";         // Google Apps Script web app that adds answers to a Google Sheet (userstudies/sheet_collector); empty = download only
   const Q = window.STUDY_QUESTIONS || [];
@@ -111,9 +111,20 @@
            "Start " + b.title.replace(" of 2", "").toLowerCase())));
   }
 
+  function emptySlot(i, q, block) {                     // a slot with no example chosen yet
+    const next = el("button", { class: "btn", onclick: () => { state.page = i + 1; if (state.page >= state.order.length) state.finished = new Date().toISOString(); save(); render(); } },
+                    i === state.order.length - 1 ? "Finish" : "Next");
+    app.append(
+      el("div", { class: "topbar" }, el("strong", {}, block.title), el("span", { class: "muted small" }, "Page " + (i + 1) + " of " + state.order.length)),
+      el("div", { class: "progress", "aria-hidden": "true" }, el("div", { style: "width:" + Math.round(100 * i / state.order.length) + "%" })),
+      el("div", { class: "panel" }, el("p", { class: "muted" }, "Example " + q.id + " has not been added yet.")),
+      el("div", { class: "nav" }, el("button", { class: "btn secondary", onclick: () => { state.page = i - 1; save(); render(); } }, "Back"), next));
+  }
+
   function question(i) {
     const q = byId[state.order[i]];
     const block = BLOCKS[q.block];
+    if (!q.clips.length) return emptySlot(i, q, block);
     const shownAt = Date.now();
     const ans = state.answers[q.id];
     const ids = state.clipOrder[q.id];
@@ -213,6 +224,7 @@
     const sig = JSON.stringify(data.answers);
     const isPreview = new URLSearchParams(location.search).has("preview");
     function send() {                                   // add the answers to the Google Sheet
+      if (missing === data.answers.length) { status.textContent = "There are no answers to save yet."; return; }   // e.g. all slots still empty: keep the sheet clean
       if (!SUBMIT_URL || isPreview) { status.textContent = "Please download your answers and send the file back to us."; return; }
       if (state.submittedSig === sig) { status.textContent = "Your answers have been saved. Thank you, you can close this page."; return; }
       status.textContent = "Saving your answers..."; retry.style.display = "none";
