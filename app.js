@@ -17,7 +17,7 @@
       intro: ["In this section, each method *deforms the letter*: its shape is reshaped toward the prompt and then animated, so the letter will not look exactly like the original however, the output should still have the basic topology/structure of the letter.",
               "Rank the three animations by how well their motion performs the action described in the prompt in a strong way while keeping the shape of input letter."],
       note: "Section 1: the letter's shape is deformed toward the prompt and animated.",
-      question: "Rank the animations from best to worst based on how well each one *performs the prompted action*, *preserves the original letter* shape with *natural motion*." },
+      question: "Rank the animations from best to worst based on how well each one *performs the action in the prompt, preserves the shape of letter* with natural motion." },
     motion_only: {
       title: "Section 2 of 2",
       intro: ["In this section there is *no deformation*: the letter keeps its original shape and only moves.",
