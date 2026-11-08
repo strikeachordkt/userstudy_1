@@ -4,19 +4,19 @@ window.STUDY_QUESTIONS = [
   "id": "q01",
   "block": "shape_motion",
   "prompt": "a slender deer bounding, its long legs swinging far forward then tucking back beneath the body",
-  "input": "assets/q01/in_2d15264c.png",
+  "input": "assets/q01/in_116c3878.png",
   "clips": [
    {
-    "id": "8d455594",
-    "src": "assets/q01/8d455594.gif"
+    "id": "5d2702d8",
+    "src": "assets/q01/5d2702d8.gif"
    },
    {
-    "id": "31a37f9c",
-    "src": "assets/q01/31a37f9c.gif"
+    "id": "c1941465",
+    "src": "assets/q01/c1941465.gif"
    },
    {
-    "id": "15a50dfa",
-    "src": "assets/q01/15a50dfa.gif"
+    "id": "b4cbc593",
+    "src": "assets/q01/b4cbc593.gif"
    }
   ]
  },
@@ -24,19 +24,19 @@ window.STUDY_QUESTIONS = [
   "id": "q02",
   "block": "shape_motion",
   "prompt": "a dog offering its paw, body seated",
-  "input": "assets/q02/in_68e9c18c.png",
+  "input": "assets/q02/in_15482898.png",
   "clips": [
    {
-    "id": "94e92453",
-    "src": "assets/q02/94e92453.gif"
+    "id": "4520bc17",
+    "src": "assets/q02/4520bc17.gif"
    },
    {
-    "id": "80079f25",
-    "src": "assets/q02/80079f25.gif"
+    "id": "425b3827",
+    "src": "assets/q02/425b3827.gif"
    },
    {
-    "id": "88c7cf61",
-    "src": "assets/q02/88c7cf61.gif"
+    "id": "bfe5a06a",
+    "src": "assets/q02/bfe5a06a.gif"
    }
   ]
  },
@@ -44,28 +44,41 @@ window.STUDY_QUESTIONS = [
   "id": "q03",
   "block": "shape_motion",
   "prompt": "a lizard doing push-ups, tail flat",
-  "input": "assets/q03/in_feaf5c5f.png",
+  "input": "assets/q03/in_b62a677f.png",
   "clips": [
    {
-    "id": "d6e08ca3",
-    "src": "assets/q03/d6e08ca3.gif"
+    "id": "74219271",
+    "src": "assets/q03/74219271.gif"
    },
    {
-    "id": "75cd0c17",
-    "src": "assets/q03/75cd0c17.gif"
+    "id": "2396abc0",
+    "src": "assets/q03/2396abc0.gif"
    },
    {
-    "id": "d46d7b83",
-    "src": "assets/q03/d46d7b83.gif"
+    "id": "1db8335e",
+    "src": "assets/q03/1db8335e.gif"
    }
   ]
  },
  {
   "id": "q04",
   "block": "shape_motion",
-  "prompt": "",
-  "input": "",
-  "clips": []
+  "prompt": "a bird in flight beating both wings through deep full strokes, up and down",
+  "input": "assets/q04/in_d0b276f7.png",
+  "clips": [
+   {
+    "id": "a365c782",
+    "src": "assets/q04/a365c782.gif"
+   },
+   {
+    "id": "e390e521",
+    "src": "assets/q04/e390e521.gif"
+   },
+   {
+    "id": "19d916ee",
+    "src": "assets/q04/19d916ee.gif"
+   }
+  ]
  },
  {
   "id": "q05",
