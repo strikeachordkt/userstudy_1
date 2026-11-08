@@ -4,19 +4,19 @@ window.STUDY_QUESTIONS = [
   "id": "q01",
   "block": "shape_motion",
   "prompt": "a slender deer bounding, its long legs swinging far forward then tucking back beneath the body",
-  "input": "assets/q01/in_116c3878.png",
+  "input": "assets/q01/in_7e15e474.png",
   "clips": [
    {
-    "id": "5d2702d8",
-    "src": "assets/q01/5d2702d8.gif"
+    "id": "e33c0246",
+    "src": "assets/q01/e33c0246.gif"
    },
    {
-    "id": "c1941465",
-    "src": "assets/q01/c1941465.gif"
+    "id": "538a4fa9",
+    "src": "assets/q01/538a4fa9.gif"
    },
    {
-    "id": "b4cbc593",
-    "src": "assets/q01/b4cbc593.gif"
+    "id": "93bfb571",
+    "src": "assets/q01/93bfb571.gif"
    }
   ]
  },
@@ -24,19 +24,19 @@ window.STUDY_QUESTIONS = [
   "id": "q02",
   "block": "shape_motion",
   "prompt": "a dog offering its paw, body seated",
-  "input": "assets/q02/in_15482898.png",
+  "input": "assets/q02/in_b599f20b.png",
   "clips": [
    {
-    "id": "4520bc17",
-    "src": "assets/q02/4520bc17.gif"
+    "id": "c87cdad2",
+    "src": "assets/q02/c87cdad2.gif"
    },
    {
-    "id": "425b3827",
-    "src": "assets/q02/425b3827.gif"
+    "id": "8ebe5911",
+    "src": "assets/q02/8ebe5911.gif"
    },
    {
-    "id": "bfe5a06a",
-    "src": "assets/q02/bfe5a06a.gif"
+    "id": "e3da3d32",
+    "src": "assets/q02/e3da3d32.gif"
    }
   ]
  },
@@ -44,19 +44,19 @@ window.STUDY_QUESTIONS = [
   "id": "q03",
   "block": "shape_motion",
   "prompt": "a lizard doing push-ups, tail flat",
-  "input": "assets/q03/in_b62a677f.png",
+  "input": "assets/q03/in_0d6aad86.png",
   "clips": [
    {
-    "id": "74219271",
-    "src": "assets/q03/74219271.gif"
+    "id": "8fd58e19",
+    "src": "assets/q03/8fd58e19.gif"
    },
    {
-    "id": "2396abc0",
-    "src": "assets/q03/2396abc0.gif"
+    "id": "3360c3a6",
+    "src": "assets/q03/3360c3a6.gif"
    },
    {
-    "id": "1db8335e",
-    "src": "assets/q03/1db8335e.gif"
+    "id": "9439f484",
+    "src": "assets/q03/9439f484.gif"
    }
   ]
  },
@@ -64,28 +64,41 @@ window.STUDY_QUESTIONS = [
   "id": "q04",
   "block": "shape_motion",
   "prompt": "a bird in flight beating both wings through deep full strokes, up and down",
-  "input": "assets/q04/in_d0b276f7.png",
+  "input": "assets/q04/in_ea708ffc.png",
   "clips": [
    {
-    "id": "a365c782",
-    "src": "assets/q04/a365c782.gif"
+    "id": "246290e1",
+    "src": "assets/q04/246290e1.gif"
    },
    {
-    "id": "e390e521",
-    "src": "assets/q04/e390e521.gif"
+    "id": "4a385898",
+    "src": "assets/q04/4a385898.gif"
    },
    {
-    "id": "19d916ee",
-    "src": "assets/q04/19d916ee.gif"
+    "id": "e10ce889",
+    "src": "assets/q04/e10ce889.gif"
    }
   ]
  },
  {
   "id": "q05",
   "block": "shape_motion",
-  "prompt": "",
-  "input": "",
-  "clips": []
+  "prompt": "a pair of steel scissors opening wide and snapping shut",
+  "input": "assets/q05/in_fb92818c.png",
+  "clips": [
+   {
+    "id": "e04cdf28",
+    "src": "assets/q05/e04cdf28.gif"
+   },
+   {
+    "id": "1b376225",
+    "src": "assets/q05/1b376225.gif"
+   },
+   {
+    "id": "51f44207",
+    "src": "assets/q05/51f44207.gif"
+   }
+  ]
  },
  {
   "id": "q06",
