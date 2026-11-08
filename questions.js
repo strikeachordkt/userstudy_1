@@ -4,19 +4,19 @@ window.STUDY_QUESTIONS = [
   "id": "q01",
   "block": "shape_motion",
   "prompt": "a slender deer bounding, its long legs swinging far forward then tucking back beneath the body",
-  "input": "assets/q01/in_984c16af.png",
+  "input": "assets/q01/in_07cc8bf3.png",
   "clips": [
    {
-    "id": "f8feed0e",
-    "src": "assets/q01/f8feed0e.gif"
+    "id": "f3521a52",
+    "src": "assets/q01/f3521a52.gif"
    },
    {
-    "id": "b4c9f38a",
-    "src": "assets/q01/b4c9f38a.gif"
+    "id": "753b4976",
+    "src": "assets/q01/753b4976.gif"
    },
    {
-    "id": "745d53e8",
-    "src": "assets/q01/745d53e8.gif"
+    "id": "5aacdfbe",
+    "src": "assets/q01/5aacdfbe.gif"
    }
   ]
  },
@@ -30,9 +30,22 @@ window.STUDY_QUESTIONS = [
  {
   "id": "q03",
   "block": "shape_motion",
-  "prompt": "",
-  "input": "",
-  "clips": []
+  "prompt": "a pair of steel scissors opening wide and snapping shut",
+  "input": "assets/q03/in_8187c871.png",
+  "clips": [
+   {
+    "id": "4d31b36a",
+    "src": "assets/q03/4d31b36a.gif"
+   },
+   {
+    "id": "bc71fa44",
+    "src": "assets/q03/bc71fa44.gif"
+   },
+   {
+    "id": "305e2352",
+    "src": "assets/q03/305e2352.gif"
+   }
+  ]
  },
  {
   "id": "q04",
