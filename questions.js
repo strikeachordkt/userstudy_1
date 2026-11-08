@@ -4,19 +4,19 @@ window.STUDY_QUESTIONS = [
   "id": "q01",
   "block": "shape_motion",
   "prompt": "a slender deer bounding, its long legs swinging far forward then tucking back beneath the body",
-  "input": "assets/q01/in_07cc8bf3.png",
+  "input": "assets/q01/in_1f637449.png",
   "clips": [
    {
-    "id": "f3521a52",
-    "src": "assets/q01/f3521a52.gif"
+    "id": "3237b526",
+    "src": "assets/q01/3237b526.gif"
    },
    {
-    "id": "753b4976",
-    "src": "assets/q01/753b4976.gif"
+    "id": "18172906",
+    "src": "assets/q01/18172906.gif"
    },
    {
-    "id": "5aacdfbe",
-    "src": "assets/q01/5aacdfbe.gif"
+    "id": "71780625",
+    "src": "assets/q01/71780625.gif"
    }
   ]
  },
@@ -30,20 +30,20 @@ window.STUDY_QUESTIONS = [
  {
   "id": "q03",
   "block": "shape_motion",
-  "prompt": "a pair of steel scissors opening wide and snapping shut",
-  "input": "assets/q03/in_8187c871.png",
+  "prompt": "a lizard doing push-ups, tail flat",
+  "input": "assets/q03/in_f49f5022.png",
   "clips": [
    {
-    "id": "4d31b36a",
-    "src": "assets/q03/4d31b36a.gif"
+    "id": "26f97343",
+    "src": "assets/q03/26f97343.gif"
    },
    {
-    "id": "bc71fa44",
-    "src": "assets/q03/bc71fa44.gif"
+    "id": "e2199c09",
+    "src": "assets/q03/e2199c09.gif"
    },
    {
-    "id": "305e2352",
-    "src": "assets/q03/305e2352.gif"
+    "id": "2d903fff",
+    "src": "assets/q03/2d903fff.gif"
    }
   ]
  },
