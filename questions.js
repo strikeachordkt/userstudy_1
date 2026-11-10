@@ -123,20 +123,20 @@ window.STUDY_QUESTIONS = [
  {
   "id": "q07",
   "block": "shape_motion",
-  "prompt": "a hooked umbrella handle rocking from side to side",
-  "input": "assets/q07/in_7b0f8dc8.png",
+  "prompt": "a horse trotting, its legs swinging forward and back in an even rhythm",
+  "input": "assets/q07/in_81b645a9.png",
   "clips": [
    {
-    "id": "2fa62f07",
-    "src": "assets/q07/2fa62f07.gif"
+    "id": "2e0b2c90",
+    "src": "assets/q07/2e0b2c90.gif"
    },
    {
-    "id": "24a62f25",
-    "src": "assets/q07/24a62f25.gif"
+    "id": "242d9703",
+    "src": "assets/q07/242d9703.gif"
    },
    {
-    "id": "75b8da3f",
-    "src": "assets/q07/75b8da3f.gif"
+    "id": "eee8b8e8",
+    "src": "assets/q07/eee8b8e8.gif"
    }
   ]
  },
@@ -144,7 +144,7 @@ window.STUDY_QUESTIONS = [
   "id": "q08",
   "block": "shape_motion",
   "prompt": "a cat sitting, only the tail flicking",
-  "input": "assets/q08/in_d0801bb5.png",
+  "input": "assets/q08/in_3cfebd31.png",
   "clips": [
    {
     "id": "cc8ee349",

@@ -6,7 +6,7 @@
 (function () {
   "use strict";
   const STUDY = "userstudy_1_prompt_adherence";
-  const VERSION = 20;         // 20 = all 20 examples in, stale saved states dropped (2026-11-08); 19 = reset (2026-11-08): all examples removed, 10 empty slots per section; 18 = q03 horseshoe magnet, q20 tail wagging (2026-11-06); 17 answers score with key_v17.json
+  const VERSION = 21;         // 21 = q07 umbrella replaced by a horse trotting (2026-11-10), other 19 unchanged; 20 = all 20 examples in, stale saved states dropped (2026-11-08); 19 = reset (2026-11-08): all examples removed, 10 empty slots per section; 18 = q03 horseshoe magnet, q20 tail wagging (2026-11-06); 17 answers score with key_v17.json
   const STORE = "us1_state_v" + VERSION;
   const SUBMIT_URL = "https://script.google.com/macros/s/AKfycbzAROXydxaAtQYXPOmOT-Eaym6FIzo-LJIo8dxoVcNalQQ2iUsAj95FqXgCMrapHKV61g/exec";         // Google Apps Script web app that adds answers to a Google Sheet (userstudies/sheet_collector); empty = download only
   const Q = window.STUDY_QUESTIONS || [];
@@ -58,7 +58,7 @@
   // user 2026-11-10 "Color code action in the prompt and the word action in the question": the action part of each prompt (by question id)
   const ACTION = { q01: "bounding, its long legs swinging far forward then tucking back beneath the body", q02: "offering its paw",
     q03: "doing push-ups", q04: "beating both wings through deep full strokes, up and down", q05: "opening wide and snapping shut",
-    q06: "opening and closing its wings", q07: "rocking from side to side", q08: "the tail flicking",
+    q06: "opening and closing its wings", q07: "trotting, its legs swinging forward and back in an even rhythm", q08: "the tail flicking",
     q09: "doing jumping jacks, throwing all four limbs wide and snapping them together", q10: "raising both arms high overhead and lowering them to the sides",
     q11: "pawing the ground", q12: "slithering fast", q13: "swinging on a line", q14: "throwing a punch", q15: "shrugging his shoulders",
     q16: "swinging in a breeze", q17: "raising one arm", q18: "zigzag rippling", q19: "pinching open and shut", q20: "nodding its head" };
