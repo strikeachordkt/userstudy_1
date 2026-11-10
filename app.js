@@ -69,7 +69,9 @@
   // ---------- play each animation once ----------
   // A GIF loops only if it carries a NETSCAPE2.0 (or ANIMEXTS1.0) application block. We fetch each clip,
   // drop that block and show the result from a blob URL, so it plays once and stops on its last frame.
-  // A new blob URL restarts it (Replay). If fetching fails (e.g. opened from file://), the original file is shown.
+  // user 2026-11-10 "dont put a replay button, keep animations looping, but have a small delay between the loop": a new blob URL restarts
+  // all three together every (longest clip + PAUSE), so each holds its last frame for the pause. If fetching fails (e.g. opened from
+  // file://), the original file is shown and loops by itself (no pause).
   function stripLoop(b) {
     if (b.length < 13 || String.fromCharCode(b[0], b[1], b[2]) !== "GIF") return b;
     let i = 13;
@@ -93,12 +95,26 @@
     }
     return b;
   }
+  function gifMs(b) {                                           // one pass in ms (browsers show a 0 or 1 cs frame delay as 10 cs)
+    if (b.length < 13 || String.fromCharCode(b[0], b[1], b[2]) !== "GIF") return 0;
+    let i = 13, ms = 0;
+    if (b[10] & 0x80) i += 3 * (1 << ((b[10] & 7) + 1));
+    const skipSub = j => { while (j < b.length && b[j] !== 0) j += b[j] + 1; return j + 1; };
+    while (i < b.length) {
+      if (b[i] === 0x21) { if (b[i + 1] === 0xF9) { const d = b[i + 4] | (b[i + 5] << 8); ms += (d <= 1 ? 10 : d) * 10; } i = skipSub(i + 2); }
+      else if (b[i] === 0x2C) { const lct = b[i + 9] & 0x80 ? 3 * (1 << ((b[i + 9] & 7) + 1)) : 0; i = skipSub(i + 10 + lct + 1); }
+      else break;
+    }
+    return ms;
+  }
+  const PAUSE = 1000;                                            // ms between loops
   const onceCache = {};
-  function playOnce(src) {                                       // -> Promise<Blob or null>, fetched once per clip
+  function playOnce(src) {                                       // -> Promise<{blob, ms} or null>, fetched once per clip
     if (!onceCache[src]) onceCache[src] = fetch(src).then(r => { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); })
-      .then(buf => new Blob([stripLoop(new Uint8Array(buf))], { type: "image/gif" })).catch(() => null);
+      .then(buf => { const b = new Uint8Array(buf); return { blob: new Blob([stripLoop(b)], { type: "image/gif" }), ms: gifMs(b) }; }).catch(() => null);
     return onceCache[src];
   }
+  let loopTimer = null;
   let liveUrls = [];
   function releaseUrls() { liveUrls.forEach(u => URL.revokeObjectURL(u)); liveUrls = []; }
 
@@ -127,6 +143,7 @@
   function render() {
     window.scrollTo(0, 0);
     releaseUrls();
+    if (loopTimer) { clearInterval(loopTimer); loopTimer = null; }
     app.replaceChildren();
     if (state.page < 0) return intro();
     if (state.page >= state.order.length) return done();
@@ -142,10 +159,11 @@
       el("div", { class: "panel" },
         el("p", {}, el("strong", {}, "This study has two sections of " + (Q.length / 2) + " pages each."), " It should take less than 5 minutes to complete both. Each page shows a short text prompt, the original letter/glyph, and three animations of that letter made by different methods."),
         el("ul", { class: "steps" },
-          el("li", {}, "Watch all three animations. Each one plays once; press Replay to watch them again."),
+          el("li", {}, "Watch all three animations. They loop, with a short pause between plays."),
           el("li", {}, "Click the best one first, then the second best; the last one is ranked for you."),
           el("li", {}, ...rich("Rank the animations A, B and C from best to worst on how well each one animates the given letter shape by following the [[action]] in the prompt."))),   // user 2026-11-10
-        el("p", {}, "Each section starts with a short note on what to look for.")),
+        el("p", {}, "Each section starts with a short note on what to look for."),
+        el("p", { class: "callout" }, el("strong", {}, "Please take your time."))),   // user 2026-11-10
       el("div", { class: "nav" }, el("span"),
         el("button", { class: "btn", onclick: () => {
           state.started = state.started || new Date().toISOString();
@@ -205,26 +223,29 @@
       });
       return b;
     });
-    const replay = el("button", { class: "btn secondary", type: "button", disabled: "" }, "\u21BB Replay");
-    let blobs = null;
+    let blobs = null, cycle = 0;
     function play() {                                        // (re)start all three together
       releaseUrls();
       ids.forEach(cid => {
         const img = imgs[cid], plain = () => { img.onerror = null; img.src = clipById[cid].src + "?v=" + Date.now(); };
         if (blobs && blobs[cid]) {
-          const u = URL.createObjectURL(blobs[cid]); liveUrls.push(u);
+          const u = URL.createObjectURL(blobs[cid].blob); liveUrls.push(u);
           img.onerror = plain;                               // a browser that will not show the play-once copy gets the file itself
           img.src = u;
         } else plain();
       });
     }
-    replay.addEventListener("click", () => { replays++; play(); commit(); });
     let started = false;
-    const start = () => { if (started || state.order[state.page] !== q.id) return; started = true; play(); replay.removeAttribute("disabled"); };
-    setTimeout(start, 3000);                                 // slow or blocked fetch: show the files themselves after 3 s
+    const start = () => {                                    // (re)start all three, then every cycle ms
+      if (state.order[state.page] !== q.id) return;
+      if (loopTimer) { clearInterval(loopTimer); loopTimer = null; }
+      started = true; play(); if (cycle) loopTimer = setInterval(play, cycle);
+    };
+    setTimeout(() => { if (!started) start(); }, 3000);     // slow or blocked fetch: show the files themselves (they loop by themselves)
     Promise.all(ids.map(cid => playOnce(clipById[cid].src))).then(bs => {
-      blobs = Object.fromEntries(ids.map((cid, k) => [cid, bs[k]]));   // later replays use the play-once copies
-      start();
+      const ms = Math.max(0, ...bs.filter(Boolean).map(x => x.ms));
+      if (ms) { blobs = Object.fromEntries(ids.map((cid, k) => [cid, bs[k]])); cycle = ms + PAUSE; }
+      if (!started || blobs) start();                        // the play-once copies on a shared loop with a pause
     });
     function paint() {
       buttons.forEach((b, k) => {
@@ -258,7 +279,7 @@
         el("div", { class: "muted small" }, "Prompt"),
         el("p", { class: "prompt" }, ...promptText(q)),
         el("p", { class: "question" }, ...rich(block.question)),
-        el("div", { class: "replaybar" }, el("span", { class: "muted small" }, "Each animation plays once."), replay),
+        el("div", { class: "replaybar" }, el("span", { class: "muted small" }, "The animations loop, with a short pause between plays.")),
         el("div", { class: "row" },
           el("div", { class: "source" }, el("img", { src: q.input, alt: "The original shape" }), el("div", { class: "lab" }, "Original Shape")),   // same size as each animation
           el("div", { class: "choices" }, buttons)),
