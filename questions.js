@@ -124,19 +124,19 @@ window.STUDY_QUESTIONS = [
   "id": "q07",
   "block": "shape_motion",
   "prompt": "a horse trotting, its legs swinging forward and back in an even rhythm",
-  "input": "assets/q07/in_81b645a9.png",
+  "input": "assets/q07/in_3dd18729.png",
   "clips": [
    {
-    "id": "2e0b2c90",
-    "src": "assets/q07/2e0b2c90.gif"
+    "id": "b9db16d8",
+    "src": "assets/q07/b9db16d8.gif"
    },
    {
-    "id": "242d9703",
-    "src": "assets/q07/242d9703.gif"
+    "id": "80d0605b",
+    "src": "assets/q07/80d0605b.gif"
    },
    {
-    "id": "eee8b8e8",
-    "src": "assets/q07/eee8b8e8.gif"
+    "id": "42ced9f9",
+    "src": "assets/q07/42ced9f9.gif"
    }
   ]
  },
@@ -144,7 +144,7 @@ window.STUDY_QUESTIONS = [
   "id": "q08",
   "block": "shape_motion",
   "prompt": "a cat sitting, only the tail flicking",
-  "input": "assets/q08/in_3cfebd31.png",
+  "input": "assets/q08/in_000dee6a.png",
   "clips": [
    {
     "id": "cc8ee349",
