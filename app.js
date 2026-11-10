@@ -17,7 +17,7 @@
       intro: ["In this section, each method *deforms the letter*: its shape is reshaped toward the prompt and then animated, so the letter will not look exactly like the original however, the output should still have the basic topology/structure of the letter.",
               "Rank the three animations by how well their motion performs the action described in the prompt in a strong way while keeping the shape of input letter."],
       note: "Section 1: the letter's shape is deformed toward the prompt and animated.",
-      question: "Rank the animations from best to worst based on how well each one *performs the action in the prompt, preserves the shape of letter* with natural motion." },
+      question: "Rank the animations A, B and C from best to worst on how well each one animates the given letter shape by following the [[action]] in the prompt." },   // user 2026-11-10
     motion_only: {
       title: "Section 2 of 2",
       intro: ["In this section there is *no deformation*: the letter keeps its original shape and only moves.",
@@ -51,8 +51,20 @@
     for (const c of kids.flat()) if (c !== null && c !== undefined) n.append(c.nodeType ? c : document.createTextNode(c));
     return n;
   }
-  function rich(text) {                                  // "*bold*" -> <strong>bold</strong>
-    return text.split(/(\*[^*]+\*)/).filter(Boolean).map(t => t.startsWith("*") ? el("strong", {}, t.slice(1, -1)) : t);
+  function rich(text) {                                  // "*bold*" -> <strong>bold</strong>; "[[action]]" -> bold in the action colour
+    return text.split(/(\*[^*]+\*|\[\[[^\]]+\]\])/).filter(Boolean).map(t => t.startsWith("*") ? el("strong", {}, t.slice(1, -1))
+      : t.startsWith("[[") ? el("strong", { class: "act" }, t.slice(2, -2)) : t);
+  }
+  // user 2026-11-10 "Color code action in the prompt and the word action in the question": the action part of each prompt (by question id)
+  const ACTION = { q01: "bounding, its long legs swinging far forward then tucking back beneath the body", q02: "offering its paw",
+    q03: "doing push-ups", q04: "beating both wings through deep full strokes, up and down", q05: "opening wide and snapping shut",
+    q06: "opening and closing its wings", q07: "rocking from side to side", q08: "the tail flicking",
+    q09: "doing jumping jacks, throwing all four limbs wide and snapping them together", q10: "raising both arms high overhead and lowering them to the sides",
+    q11: "pawing the ground", q12: "slithering fast", q13: "swinging on a line", q14: "throwing a punch", q15: "shrugging his shoulders",
+    q16: "swinging in a breeze", q17: "raising one arm", q18: "zigzag rippling", q19: "pinching open and shut", q20: "nodding its head" };
+  function promptText(q) {                               // the prompt with its action part in the action colour
+    const a = ACTION[q.id], k = a ? q.prompt.indexOf(a) : -1;
+    return k < 0 ? [q.prompt] : [q.prompt.slice(0, k), el("span", { class: "act" }, a), q.prompt.slice(k + a.length)];
   }
   // ---------- play each animation once ----------
   // A GIF loops only if it carries a NETSCAPE2.0 (or ANIMEXTS1.0) application block. We fetch each clip,
@@ -131,8 +143,8 @@
         el("p", {}, el("strong", {}, "This study has two sections of " + (Q.length / 2) + " pages each."), " It should take less than 5 minutes to complete both. Each page shows a short text prompt, the original letter/glyph, and three animations of that letter made by different methods."),
         el("ul", { class: "steps" },
           el("li", {}, "Watch all three animations. Each one plays once; press Replay to watch them again."),
-          el("li", {}, "Rank them from best to worst by how well their motion performs the action in the prompt. Click the best one first, then the second best; the last one is ranked for you."),
-          el("li", {}, "Judge the motion based on how well it follows the guide prompt while keeping good motion quality and preserving the general shape of the letter.")),
+          el("li", {}, "Click the best one first, then the second best; the last one is ranked for you."),
+          el("li", {}, ...rich("Rank the animations A, B and C from best to worst on how well each one animates the given letter shape by following the [[action]] in the prompt."))),   // user 2026-11-10
         el("p", {}, "Each section starts with a short note on what to look for.")),
       el("div", { class: "nav" }, el("span"),
         el("button", { class: "btn", onclick: () => {
@@ -244,7 +256,7 @@
       el("div", { class: "panel" },
         el("p", { class: "muted small blocknote" }, block.note),
         el("div", { class: "muted small" }, "Prompt"),
-        el("p", { class: "prompt" }, q.prompt),
+        el("p", { class: "prompt" }, ...promptText(q)),
         el("p", { class: "question" }, ...rich(block.question)),
         el("div", { class: "replaybar" }, el("span", { class: "muted small" }, "Each animation plays once."), replay),
         el("div", { class: "row" },

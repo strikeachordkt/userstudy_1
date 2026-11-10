@@ -113,3 +113,7 @@ details.backup summary { cursor: pointer; }
 /* replay control at the top of each example (animations play once) */
 .replaybar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 0 0 10px; }
 .replaybar .btn { padding: 6px 14px; font-size: .9rem; }
+
+/* user 2026-11-10: the action in the prompt and the word "action" in the question share one colour */
+.act { color: #c2410c; }
+.question strong.act, ul.steps strong.act { font-weight: 700; }
