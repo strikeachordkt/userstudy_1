@@ -119,3 +119,5 @@ details.backup summary { cursor: pointer; }
 .question strong.act, ul.steps strong.act { font-weight: 700; }
 /* user 2026-11-10: highlighted note on the opening page */
 .callout { background: #fff4d6; border-left: 4px solid #e0a800; border-radius: 8px; padding: 10px 14px; margin: 14px 0 0; }
+/* user 2026-11-10: section 1 question, 'reshapes and animates' in dark green */
+.shp { color: #166534; font-weight: 700; }

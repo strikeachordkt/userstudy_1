@@ -16,7 +16,7 @@
       title: "Section 1 of 2",
       intro: null,   // user 2026-11-10: no start-of-section page for section 1
       note: "Section 1: the letter's shape is deformed toward the prompt and animated.",
-      question: "Rank the animations A, B and C from best to worst on how well each one reshapes and animates the given letter shape by following the [[action]] in the prompt." },   // user 2026-11-10
+      question: "Rank the animations A, B and C from best to worst on how well each one {{reshapes and animates}} the given letter shape by following the [[action]] in the prompt." },   // user 2026-11-10
     motion_only: {
       title: "Section 2 of 2",
       intro: ["In this section there is no deformation: the letter keeps its original shape. Please judge animations based on same criteria as before."],   // user 2026-11-10 wording
@@ -49,9 +49,10 @@
     for (const c of kids.flat()) if (c !== null && c !== undefined) n.append(c.nodeType ? c : document.createTextNode(c));
     return n;
   }
-  function rich(text) {                                  // "*bold*" -> <strong>bold</strong>; "[[action]]" -> bold in the action colour
-    return text.split(/(\*[^*]+\*|\[\[[^\]]+\]\])/).filter(Boolean).map(t => t.startsWith("*") ? el("strong", {}, t.slice(1, -1))
-      : t.startsWith("[[") ? el("strong", { class: "act" }, t.slice(2, -2)) : t);
+  function rich(text) {                                  // "*bold*" -> <strong>bold</strong>; "[[action]]" -> bold in the action colour; "{{x}}" -> bold dark green
+    return text.split(/(\*[^*]+\*|\[\[[^\]]+\]\]|\{\{[^}]+\}\})/).filter(Boolean).map(t => t.startsWith("*") ? el("strong", {}, t.slice(1, -1))
+      : t.startsWith("[[") ? el("strong", { class: "act" }, t.slice(2, -2))
+      : t.startsWith("{{") ? el("strong", { class: "shp" }, t.slice(2, -2)) : t);
   }
   // user 2026-11-10 "Color code action in the prompt and the word action in the question": the action part of each prompt (by question id)
   const ACTION = { q01: "bounding, its long legs swinging far forward then tucking back beneath the body", q02: "offering its paw",
