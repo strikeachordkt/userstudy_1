@@ -144,7 +144,7 @@ window.STUDY_QUESTIONS = [
   "id": "q08",
   "block": "shape_motion",
   "prompt": "a cat sitting, only the tail flicking",
-  "input": "assets/q08/in_000dee6a.png",
+  "input": "assets/q08/in_8e56d09f.png",
   "clips": [
    {
     "id": "cc8ee349",

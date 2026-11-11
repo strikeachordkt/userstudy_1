@@ -14,14 +14,12 @@
   const BLOCKS = {
     shape_motion: {
       title: "Section 1 of 2",
-      intro: ["In this section, each method *deforms the letter*: its shape is reshaped toward the prompt and then animated, so the letter will not look exactly like the original however, the output should still have the basic topology/structure of the letter.",
-              "Rank the three animations by how well their motion performs the action described in the prompt in a strong way while keeping the shape of input letter."],
+      intro: null,   // user 2026-11-10: no start-of-section page for section 1
       note: "Section 1: the letter's shape is deformed toward the prompt and animated.",
       question: "Rank the animations A, B and C from best to worst on how well each one animates the given letter shape by following the [[action]] in the prompt." },   // user 2026-11-10
     motion_only: {
       title: "Section 2 of 2",
-      intro: ["In this section there is *no deformation*: the letter keeps its original shape and only moves.",
-              "Please rank which animation does the best job of *interpreting* the motion in the prompt onto the letter."],
+      intro: ["In this section there is no deformation: the letter keeps its original shape. Please judge animations based on same criteria as before."],   // user 2026-11-10 wording
       note: "Section 2: no deformation. The letter keeps its shape and only moves.",
       question: "Rank the animations from best to worst: which one *best interprets the motion in the prompt* onto the letter?" }
   };
@@ -149,7 +147,7 @@
     if (state.page >= state.order.length) return done();
     const blk = byId[state.order[state.page]].block;           // first page of a section: its intro first
     const first = state.order.findIndex(id => byId[id].block === blk);
-    if (state.page === first && !(state.seenIntro || {})[blk]) return sectionIntro(blk, state.page);
+    if (state.page === first && BLOCKS[blk].intro && !(state.seenIntro || {})[blk]) return sectionIntro(blk, state.page);
     return question(state.page);
   }
 
@@ -180,7 +178,7 @@
       el("div", { class: "nav" },
         el("button", { class: "btn secondary", onclick: () => { state.page = i - 1; save(); render(); } }, "Back"),
         el("button", { class: "btn", onclick: () => { state.seenIntro = Object.assign(state.seenIntro || {}, { [blk]: true }); save(); render(); } },
-           "Start " + b.title.replace(" of 2", "").toLowerCase())));
+           "Continue")));   // user 2026-11-10: no "start section" pages
   }
 
   function emptySlot(i, q, block) {                     // a slot with no example chosen yet
