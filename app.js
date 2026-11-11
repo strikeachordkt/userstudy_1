@@ -160,7 +160,6 @@
           el("li", {}, "Watch all three animations. They loop, with a short pause between plays."),
           el("li", {}, "Click the best one first, then the second best; the last one is ranked for you."),
           el("li", {}, ...rich("Rank the animations A, B and C from best to worst on how well each one animates the given letter shape by following the [[action]] in the prompt."))),   // user 2026-11-10
-        el("p", {}, "Each section starts with a short note on what to look for."),
         el("p", { class: "callout" }, el("strong", {}, "Please take your time."))),   // user 2026-11-10
       el("div", { class: "nav" }, el("span"),
         el("button", { class: "btn", onclick: () => {
