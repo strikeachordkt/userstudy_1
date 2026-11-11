@@ -16,7 +16,7 @@
       title: "Section 1 of 2",
       intro: null,   // user 2026-11-10: no start-of-section page for section 1
       note: "Section 1: the letter's shape is deformed toward the prompt and animated.",
-      question: "Rank the animations A, B and C from best to worst on how well each one animates the given letter shape by following the [[action]] in the prompt." },   // user 2026-11-10
+      question: "Rank the animations A, B and C from best to worst on how well each one reshapes and animates the given letter shape by following the [[action]] in the prompt." },   // user 2026-11-10
     motion_only: {
       title: "Section 2 of 2",
       intro: ["In this section there is no deformation: the letter keeps its original shape. Please judge animations based on same criteria as before."],   // user 2026-11-10 wording
