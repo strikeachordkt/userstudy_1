@@ -57,7 +57,8 @@
   // user 2026-11-10 "Color code action in the prompt and the word action in the question": the action part of each prompt (by question id)
   const ACTION = { q01: "bounding, its long legs swinging far forward then tucking back beneath the body", q02: "offering its paw",
     q03: "doing push-ups", q04: "beating both wings through deep full strokes, up and down", q05: "opening wide and snapping shut",
-    q06: "opening and closing its wings", q07: "trotting, its legs swinging forward and back in an even rhythm", q08: ["sitting", "the tail flicking"],   // user 2026-11-10: "also highlight sitting"
+    q06: ["opening and closing its wings", "gripping"],   // user 2026-11-10: "also highlight gripping"
+    q07: "trotting, its legs swinging forward and back in an even rhythm", q08: ["sitting", "the tail flicking"],   // user 2026-11-10: "also highlight sitting"
 
     q09: "doing jumping jacks, throwing all four limbs wide and snapping them together", q10: "raising both arms high overhead and lowering them to the sides",
     q11: "pawing the ground", q12: "slithering fast", q13: "swinging on a line", q14: "throwing a punch", q15: "shrugging his shoulders",
