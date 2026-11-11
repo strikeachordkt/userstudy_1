@@ -56,13 +56,20 @@
   // user 2026-11-10 "Color code action in the prompt and the word action in the question": the action part of each prompt (by question id)
   const ACTION = { q01: "bounding, its long legs swinging far forward then tucking back beneath the body", q02: "offering its paw",
     q03: "doing push-ups", q04: "beating both wings through deep full strokes, up and down", q05: "opening wide and snapping shut",
-    q06: "opening and closing its wings", q07: "trotting, its legs swinging forward and back in an even rhythm", q08: "the tail flicking",
+    q06: "opening and closing its wings", q07: "trotting, its legs swinging forward and back in an even rhythm", q08: ["sitting", "the tail flicking"],   // user 2026-11-10: "also highlight sitting"
+
     q09: "doing jumping jacks, throwing all four limbs wide and snapping them together", q10: "raising both arms high overhead and lowering them to the sides",
     q11: "pawing the ground", q12: "slithering fast", q13: "swinging on a line", q14: "throwing a punch", q15: "shrugging his shoulders",
     q16: "swinging in a breeze", q17: "raising one arm", q18: "zigzag rippling", q19: "pinching open and shut", q20: "nodding its head" };
-  function promptText(q) {                               // the prompt with its action part in the action colour
-    const a = ACTION[q.id], k = a ? q.prompt.indexOf(a) : -1;
-    return k < 0 ? [q.prompt] : [q.prompt.slice(0, k), el("span", { class: "act" }, a), q.prompt.slice(k + a.length)];
+  function promptText(q) {                               // the prompt with its action part(s) in the action colour
+    const out = []; let rest = q.prompt;
+    for (const a of [].concat(ACTION[q.id] || [])) {     // one string, or several in prompt order
+      const k = rest.indexOf(a);
+      if (k < 0) continue;
+      out.push(rest.slice(0, k), el("span", { class: "act" }, a)); rest = rest.slice(k + a.length);
+    }
+    out.push(rest);
+    return out.filter(t => t !== "");
   }
   // ---------- play each animation once ----------
   // A GIF loops only if it carries a NETSCAPE2.0 (or ANIMEXTS1.0) application block. We fetch each clip,
