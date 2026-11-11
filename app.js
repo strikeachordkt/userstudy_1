@@ -21,7 +21,7 @@
       title: "Section 2 of 2",
       intro: ["In this section there is no deformation: the letter keeps its original shape. Please judge animations based on same criteria as before."],   // user 2026-11-10 wording
       note: "Section 2: no deformation. The letter keeps its shape and only moves.",
-      question: "Rank the animations from best to worst: which one *best interprets the motion in the prompt* onto the letter?" }
+      question: "Rank the animations A, B and C from best to worst on how well each one {{animates}} the given letter shape by following the [[action]] in the prompt." }   // user 2026-11-10: section 1 wording, "animates" highlighted
   };
   const app = document.getElementById("app");
 
